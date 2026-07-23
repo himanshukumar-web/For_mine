@@ -338,7 +338,7 @@
     if (storyIndex >= slides.length) {
       // Final slide
       const f = c.story?.finalSlide || {};
-      const gifHtml = f.gif ? `<div class="story-gif-wrap"><img src="${f.gif}" alt="" class="story-gif" /></div>` : "";
+      const gifHtml = f.gif ? `<div class="story-gif-wrap"><img src="${f.gif}" alt="" class="story-gif" onerror="this.parentElement.style.display='none'" /></div>` : "";
       slideEl.innerHTML = `
         <div class="story-final">
           ${gifHtml}
@@ -352,7 +352,7 @@
     }
 
     const slide = slides[storyIndex];
-    const gifHtml = slide.gif ? `<div class="story-gif-wrap"><img src="${slide.gif}" alt="" class="story-gif" /></div>` : "";
+    const gifHtml = slide.gif ? `<div class="story-gif-wrap"><img src="${slide.gif}" alt="" class="story-gif" onerror="this.parentElement.style.display='none'" /></div>` : "";
     slideEl.innerHTML =
       gifHtml +
       `<div class="story-emoji">${slide.emoji || "💌"}</div>` +
@@ -428,9 +428,9 @@
   (function renderHeroGif() {
     const gifWrap = $("#heroGifWrap");
     if (!gifWrap) return;
-    const gifSrc = c.hero?.heroGif?.src || "https://media.giphy.com/media/10UeedrT5MIfPG/giphy.gif";
+    const gifSrc = c.hero?.heroGif?.src || "https://i.giphy.com/10UeedrT5MIfPG.gif";
     const gifAlt = c.hero?.heroGif?.alt || "Anime Birthday Celebration GIF";
-    gifWrap.innerHTML = `<img src="${gifSrc}" alt="${gifAlt}" loading="lazy" />`;
+    gifWrap.innerHTML = `<img src="${gifSrc}" alt="${gifAlt}" loading="lazy" onerror="this.parentElement.style.display='none'" />`;
   })();
 
   /* =====================================================================

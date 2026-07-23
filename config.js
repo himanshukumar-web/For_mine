@@ -74,7 +74,7 @@ const CONFIG = {
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
     heroImage:  { src: "", alt: "Hero photo" },
-    heroGif:    { src: "https://media.giphy.com/media/10UeedrT5MIfPG/giphy.gif", alt: "Anime Birthday Celebration GIF" }
+    heroGif:    { src: "https://i.giphy.com/10UeedrT5MIfPG.gif", alt: "Anime Birthday Celebration GIF" }
   },
 
   // ── STORY MODE ─────────────────────────────────────────────────────────
@@ -86,32 +86,32 @@ const CONFIG = {
       {
         emoji: "😍",
         lines: ["Hii you", "yes, you", "reading this right now"],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p0eGNwYWh1ZjQxZnB0YnIwb2Qxc2lndG5mNms3eTNpNXp0bnJleSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LqU7ZolDscy79U2gTU/giphy.gif"
+        gif: "https://i.giphy.com/kyLYXonQYYfwYDIeZl.gif"
       },
       {
         emoji: "🌤️",
         lines: ["Hope today's been", "treating you soft", "and a little bit magical"],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVqNWttcWg0dDF0MW52bXZycWh5dzhqZWt0ZW52MG13ZXBybXpzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif"
+        gif: "https://i.giphy.com/3o7TKMt1VVNkHV2PaE.gif"
       },
       {
         emoji: "🎂",
         lines: ["Because today isn't", "just any day...", "it's YOUR day!"],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDFnbTZxdG1ldGtyNXAzeHBtdTdrdm4wbDRkdm53bXZxcHB2cnBvZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/10UeedrT5MIfPG/giphy.gif"
+        gif: "https://i.giphy.com/l0MYt5jPR6QX5pnqM.gif"
       },
       {
         emoji: "🥹",
         lines: ["So I made you", "this whole tiny website", "instead of just saying it"],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JpczV5b2VzeTFtbHJlZjBnNDcxbW4xZjFkOHgxdWV2dWVldGNndSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4KibW1bB5vJvG3Hq/giphy.gif"
+        gif: "https://i.giphy.com/26ufdipQqU2lhNA4g.gif"
       },
       {
         emoji: "💖",
         lines: ["Thank you for being", "exactly who you are", "— don't ever change that!"],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXo5dzhubTJzMjV2N2xmcWw4ZnQxcWd3Z3JkOHd6bzF5cGtrbWExaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26brv0ThEZ3G6Vl6M/giphy.gif"
+        gif: "https://i.giphy.com/26n6Wywq48ysWvyms.gif"
       },
       {
         emoji: "🎉",
         lines: ["okay okay", "I'll stop stalling", "keep tapping..."],
-        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWsyOTFydGtrdmUxaHJrd2Z5bmx4YXR6aXJzNzNxcWZpdjcxY21ydCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZ42mg6pbT3M3K/giphy.gif"
+        gif: "https://i.giphy.com/131tNuGktpXGhy.gif"
       }
     ],
     finalSlide: {
@@ -119,7 +119,7 @@ const CONFIG = {
       heading: "Happy Birthday!",
       sub: "now go see the rest 👇",
       buttonLabel: "Open your page ✨",
-      gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p0eGNwYWh1ZjQxZnB0YnIwb2Qxc2lndG5mNms3eTNpNXp0bnJleSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LqU7ZolDscy79U2gTU/giphy.gif"
+      gif: "https://i.giphy.com/10UeedrT5MIfPG.gif"
     }
   },
 
