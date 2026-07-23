@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A magical, handcrafted birthday experience made with love." />
+<title>Happy Birthday ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ PARTICLE CANVAS ============ -->
+<canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ============ GIFT BOX INTRO ============ -->
+<div id="giftScreen" class="gift-screen">
+  <div class="gift-bg-orbs" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <span class="orb orb--4"></span>
+  </div>
+  <div class="deco-float" id="giftDeco" aria-hidden="true"></div>
+  <div class="gift-screen__content">
+    <p class="gift-screen__eyebrow" id="giftFor">for <span id="giftName">Someone Wonderful</span></p>
+    <button id="giftBox" class="gift-box" aria-label="Open your gift">
+      <span class="gift-box__emoji">🎁</span>
+      <span class="gift-box__glow"></span>
+      <span class="gift-box__ring"></span>
+    </button>
+    <p class="gift-screen__label" id="giftLabel">Tap the gift</p>
+    <p class="gift-screen__hint" id="giftHint">there's something inside</p>
+  </div>
+</div>
+
+<!-- ============ STORY MODE (tap-through reel) ============ -->
+<div id="storyScreen" class="story-screen" hidden>
+  <div class="story-card">
+    <div class="story-progress" id="storyProgress"></div>
+    <button id="storyMute" class="story-mute" aria-label="Toggle sound">🔊</button>
+    <div class="story-slide" id="storySlide"></div>
+    <div class="story-tap story-tap--left" id="storyTapLeft" aria-label="Previous"></div>
+    <div class="story-tap story-tap--right" id="storyTapRight" aria-label="Next"></div>
+  </div>
+</div>
+
+<!-- ============ THEME TOGGLE ============ -->
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark mode">🌙</button>
+
+<!-- ============ MAIN SITE ============ -->
+<main id="site" class="site" aria-hidden="true">
+
+  <!-- HERO -->
+  <section id="hero" class="page hero" data-section="hero">
+    <div class="section-deco" aria-hidden="true"></div>
+    <div class="hero__photo-wrap" id="heroPhotoWrap"></div>
+    <p class="eyebrow" id="heroEyebrow">happy birthday</p>
+    <h1 class="hero__heading gradient-text" id="heroHeading">Happy Birthday</h1>
+    <p class="hero__sub" id="heroSub"></p>
+    <div class="hero__age-badge glass-card" id="heroAgeBadge"></div>
+    <div class="hero__gif-wrap" id="heroGifWrap"></div>
+    <div class="scroll-cue"><span class="scroll-cue__text">scroll for more</span> <span class="scroll-cue__arrow">↓</span></div>
+  </section>
+
+  <!-- BIRTHDAY WISHES -->
+  <section id="wishes" class="page wishes" data-section="wishes">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="wishesEyebrow">from the heart</p>
+    <h2 class="section-title gradient-text" id="wishesHeading">Birthday Wishes For You 🎂</h2>
+    <p class="section-subtitle" id="wishesSub"></p>
+    <div class="wishes__grid" id="wishesGrid"></div>
+  </section>
+
+  <!-- FAVORITES -->
+  <section id="favorites" class="page favorites" data-section="favorites">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow">the official file</p>
+    <h2 class="section-title gradient-text">All Your Favorite Things ✨</h2>
+    <div class="favorites__grid" id="favoritesGrid"></div>
+  </section>
+
+  <!-- HOBBIES & TRAITS -->
+  <section id="hobbies" class="page hobbies" data-section="hobbies">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="hobbiesEyebrow">the fun file</p>
+    <h2 class="section-title gradient-text" id="hobbiesHeading">Things That Make You, You ✨</h2>
+    <div class="hobbies__wrap">
+      <div class="hobbies__group">
+        <h3 class="hobbies__label">Hobbies</h3>
+        <div class="hobbies__tags" id="hobbiesTags"></div>
+      </div>
+      <div class="hobbies__group">
+        <h3 class="hobbies__label">Personality Traits</h3>
+        <div class="hobbies__tags" id="traitsTags"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="page timeline" data-section="timeline">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow">how we got here</p>
+    <h2 class="section-title gradient-text">A Little Timeline 💫</h2>
+    <div class="timeline__track" id="timelineTrack"></div>
+  </section>
+
+  <!-- MEMORIES -->
+  <section id="memories" class="page memories" data-section="memories">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="memoriesEyebrow">the good stuff</p>
+    <h2 class="section-title gradient-text" id="memoriesHeading">Memories Worth Keeping 💭</h2>
+    <div class="memories__grid" id="memoriesGrid"></div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="page gallery" data-section="gallery">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="galleryEyebrow">exhibit a, b, and c</p>
+    <h2 class="section-title gradient-text" id="galleryHeading">The Photo Wall 📸</h2>
+    <div class="gallery__tabs" id="galleryTabs"></div>
+    <div class="gallery__grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- LOVE LETTER -->
+  <section id="letter" class="page letter" data-section="letter">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow">open when ready</p>
+    <h2 class="section-title gradient-text" id="letterTitle">A Letter, Just for You 💌</h2>
+    <div class="envelope" id="envelope">
+      <div class="envelope__flap"></div>
+      <div class="envelope__body">
+        <span class="envelope__seal">💌</span>
+        <span class="envelope__label">tap to open</span>
+      </div>
+    </div>
+    <div class="letterbook" id="letterbook" hidden>
+      <div class="letterbook__page" id="letterPage"></div>
+      <div class="letterbook__nav">
+        <button id="letterPrev" class="letter-btn" aria-label="Previous page">‹</button>
+        <span id="letterPageNum" class="letter-pagenum"></span>
+        <button id="letterNext" class="letter-btn" aria-label="Next page">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS / COMPLIMENTS -->
+  <section id="reasons" class="page reasons" data-section="reasons">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="reasonsEyebrow">for the record</p>
+    <h2 class="section-title gradient-text" id="reasonsHeading">Reasons You're Special 💖</h2>
+    <div class="reasons__carousel glass-card" id="reasonsCarousel"></div>
+    <button class="reasons__next-btn" id="reasonsNext" aria-label="Next reason">tap for next →</button>
+    <div class="compliments__strip" id="complimentsStrip"></div>
+  </section>
+
+  <!-- DREAM DESTINATION -->
+  <section id="dream" class="page dream" data-section="dream">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow" id="dreamEyebrow">someday soon</p>
+    <h2 class="section-title gradient-text" id="dreamHeading">Dream Destination 🌍</h2>
+    <div class="dream__card glass-card" id="dreamCard">
+      <div class="dream__emoji" id="dreamEmoji">🌸</div>
+      <h3 class="dream__place" id="dreamPlace">Kyoto, Japan</h3>
+      <p class="dream__desc" id="dreamDesc"></p>
+    </div>
+  </section>
+
+  <!-- VOICE MESSAGE -->
+  <section id="voice" class="page voice" data-section="voice">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow">press play</p>
+    <h2 class="section-title gradient-text" id="voiceTitle">A Voice Note For You 🎙️</h2>
+    <div class="cassette" id="cassette">
+      <div class="cassette__body">
+        <div class="cassette__reel cassette__reel--l"><div class="cassette__reel-inner"></div></div>
+        <div class="cassette__window">
+          <div class="cassette__waveform" id="waveform"></div>
+        </div>
+        <div class="cassette__reel cassette__reel--r"><div class="cassette__reel-inner"></div></div>
+      </div>
+      <div class="cassette__label" id="cassetteLabel">side A — recorded with love</div>
+    </div>
+    <div class="cassette__controls">
+      <button id="voicePlay" class="round-btn" aria-label="Play voice message">▶</button>
+      <span id="voiceTime" class="voice-time">0:00 / 0:47</span>
+    </div>
+    <audio id="voiceAudio"></audio>
+  </section>
+
+  <!-- VIDEO MESSAGE -->
+  <section id="video" class="page video" data-section="video">
+    <div class="section-deco" aria-hidden="true"></div>
+    <p class="eyebrow">one more thing</p>
+    <h2 class="section-title gradient-text" id="videoTitle">One Last Thing... 🎬</h2>
+    <div class="cinema" id="cinema">
+      <div class="cinema__curtain cinema__curtain--l"></div>
+      <div class="cinema__curtain cinema__curtain--r"></div>
+      <div class="cinema__screen" id="cinemaScreen">
+        <button class="cinema__play" id="cinemaPlay" aria-label="Play video">
+          <span class="cinema__play-icon">▶</span>
+        </button>
+      </div>
+      <p class="cinema__subtitle" id="cinemaSubtitle"></p>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section id="finale" class="page finale" data-section="finale">
+    <div class="section-deco" aria-hidden="true"></div>
+    <div class="finale__sky" id="finaleSky"></div>
+    <p class="eyebrow">the end (for now)</p>
+    <h2 class="section-title gradient-text finale__heading">Happy Birthday 🎂</h2>
+    <p class="finale__name" id="finaleName"></p>
+    <p class="finale__message" id="finaleMessage"></p>
+    <button id="watchAgain" class="cta-btn">Watch it again 🎬</button>
+    <p class="finale__credit">made with love, one scrapbook page at a time 💖</p>
+  </section>
+
+</main>
+
+<!-- ============ FLOATING MUSIC PLAYER ============ -->
+<div id="musicPlayer" class="music-player" hidden>
+  <button id="musicToggle" class="music-player__toggle" aria-label="Toggle music player">
+    <span class="music-player__icon">🎵</span>
+    <span class="music-player__ring"></span>
+  </button>
+  <div class="music-player__panel glass-card" id="musicPanel">
+    <p class="music-player__now" id="musicNow">Nothing playing</p>
+    <div class="music-player__progress-wrap">
+      <div class="music-player__progress" id="musicProgress"></div>
+    </div>
+    <div class="music-player__controls">
+      <button id="musicPrev" class="mini-btn" aria-label="Previous track">⏮</button>
+      <button id="musicPlayPause" class="mini-btn mini-btn--play" aria-label="Play/Pause">▶</button>
+      <button id="musicNext" class="mini-btn" aria-label="Next track">⏭</button>
+      <button id="musicShuffle" class="mini-btn" aria-label="Shuffle">🔀</button>
+    </div>
+    <input id="musicVolume" type="range" min="0" max="1" step="0.01" class="music-player__volume" aria-label="Volume">
+    <ul id="musicPlaylist" class="music-player__list"></ul>
+  </div>
+  <audio id="musicAudio"></audio>
+</div>
+
+<!-- ============ SECRET SURPRISE BUTTON ============ -->
+<button id="secretButton" class="secret-btn" aria-label="A secret surprise">🧸</button>
+
+<!-- ============ FLOATING LAYER ============ -->
+<div id="floatLayer" class="float-layer" aria-hidden="true"></div>
+
+<!-- ============ PHOTO LIGHTBOX ============ -->
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close photo viewer">✕</button>
+  <div class="lightbox__content">
+    <img id="lightboxImg" class="lightbox__img" src="" alt="" />
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<!-- ============ SURPRISE POPUP MODAL ============ -->
+<div id="surpriseModal" class="surprise-modal" hidden>
+  <div class="surprise-modal__card glass-card">
+    <div class="surprise-modal__emoji" id="surpriseEmoji">🧸</div>
+    <p class="surprise-modal__text" id="surpriseText"></p>
+    <button class="surprise-modal__close cta-btn" id="surpriseClose">aww, thank you 💖</button>
+  </div>
+</div>
+
+<!-- ============ RANDOM CUTE MESSAGE ============ -->
+<div id="cuteMessage" class="cute-message glass-card" hidden>
+  <span class="cute-message__text" id="cuteText"></span>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

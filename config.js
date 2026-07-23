@@ -1,0 +1,384 @@
+/* ============================================================================
+   🎂 THE ULTIMATE BIRTHDAY EXPERIENCE — CONFIGURATION FILE
+   ============================================================================
+   This is the ONLY file you need to edit to personalize the entire website.
+   Nothing in index.html, styles.css, or script.js is hardcoded.
+
+   HOW TO ADD PHOTOS
+   - Put image files inside an /assets folder (create it next to this file).
+   - Set the "src" field to "assets/yourfile.jpg".
+   - Leave "src" as "" to show an elegant placeholder instead.
+
+   HOW TO ADD MEMORIES
+   - Copy one object inside CONFIG.memories.items and paste as a new entry.
+   - A new memory card is generated automatically — no limit.
+
+   HOW TO ADD SONGS
+   - Copy one object inside CONFIG.music.playlist and paste as a new entry.
+   ========================================================================== */
+
+const CONFIG = {
+
+  // ── PERSONAL DETAILS ──────────────────────────────────────────────────
+  person: {
+    name: "Your Person's Name",
+    nickname: "Sunshine",
+    birthdayDate: "2026-08-15",       // YYYY-MM-DD
+    age: 21,
+    zodiac: "Leo ♌",                  // set to "" to hide
+    favorites: {
+      color: "Lavender Pink",
+      flower: "Peony",
+      animal: "Fox",
+      food: "Ramen",
+      dessert: "Tiramisu",
+      chocolate: "Dark Chocolate Truffles",
+      drink: "Iced Matcha Latte",
+      movie: "Spirited Away",
+      anime: "Your Name",
+      song: "Perfect",
+      singer: "Ed Sheeran",
+      quote: "\"Not all those who wander are lost.\"",
+      emoji: "🦊"
+    },
+    memory: "The rainy afternoon we got lost looking for that tiny bookstore and found the best mango ice cream instead.",
+    dreamDestination: "Kyoto, Japan",
+    dreamDestinationEmoji: "🌸",
+    dreamDestinationDescription: "Cherry blossoms, ancient temples, and matcha everything — we'll get there someday.",
+    hobbies: ["Painting", "Late-night baking", "Thrifting", "Journaling", "Stargazing"],
+    personalityTraits: ["Warm-hearted", "Curious", "Stubbornly kind", "Terrible at keeping secrets", "Effortlessly funny"]
+  },
+
+  // ── THEME / COLORS ─────────────────────────────────────────────────────
+  theme: {
+    defaultMode: "dark",               // "light" or "dark"
+    colors: {
+      primary:    "#FF6B9D",           // rose — buttons, headings, accents
+      secondary:  "#FFB347",           // warm gold — secondary highlights
+      accent:     "#C084FC",           // lilac/purple — glows, highlights
+      tertiary:   "#67E8F9",           // cyan — extra pop
+      bgStartLight: "#FFF5F7",
+      bgEndLight:   "#FDE8EF",
+      bgStartDark:  "#0F0A1A",
+      bgEndDark:    "#1A0E2E",
+      textLight: "#3D2B3D",
+      textDark:  "#F5E6F0",
+      cardLight: "rgba(255, 255, 255, 0.7)",
+      cardDark:  "rgba(255, 255, 255, 0.06)"
+    }
+  },
+
+  // ── HERO / COVER ───────────────────────────────────────────────────────
+  hero: {
+    heading: "Happy Birthday",
+    subheading: "One more year of being the best part of everyone's story. ✨",
+    coverImage: { src: "", alt: "Cover photo" },
+    heroImage:  { src: "", alt: "Hero photo" },
+    heroGif:    { src: "https://media.giphy.com/media/10UeedrT5MIfPG/giphy.gif", alt: "Anime Birthday Celebration GIF" }
+  },
+
+  // ── STORY MODE ─────────────────────────────────────────────────────────
+  story: {
+    giftBoxLabel: "Tap the gift 🎁",
+    giftBoxHint: "there's something special inside",
+    musicPromptText: "🔊 turn up your volume",
+    slides: [
+      {
+        emoji: "😍",
+        lines: ["Hii you", "yes, you", "reading this right now"],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p0eGNwYWh1ZjQxZnB0YnIwb2Qxc2lndG5mNms3eTNpNXp0bnJleSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LqU7ZolDscy79U2gTU/giphy.gif"
+      },
+      {
+        emoji: "🌤️",
+        lines: ["Hope today's been", "treating you soft", "and a little bit magical"],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVqNWttcWg0dDF0MW52bXZycWh5dzhqZWt0ZW52MG13ZXBybXpzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMt1VVNkHV2PaE/giphy.gif"
+      },
+      {
+        emoji: "🎂",
+        lines: ["Because today isn't", "just any day...", "it's YOUR day!"],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDFnbTZxdG1ldGtyNXAzeHBtdTdrdm4wbDRkdm53bXZxcHB2cnBvZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/10UeedrT5MIfPG/giphy.gif"
+      },
+      {
+        emoji: "🥹",
+        lines: ["So I made you", "this whole tiny website", "instead of just saying it"],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JpczV5b2VzeTFtbHJlZjBnNDcxbW4xZjFkOHgxdWV2dWVldGNndSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4KibW1bB5vJvG3Hq/giphy.gif"
+      },
+      {
+        emoji: "💖",
+        lines: ["Thank you for being", "exactly who you are", "— don't ever change that!"],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXo5dzhubTJzMjV2N2xmcWw4ZnQxcWd3Z3JkOHd6bzF5cGtrbWExaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26brv0ThEZ3G6Vl6M/giphy.gif"
+      },
+      {
+        emoji: "🎉",
+        lines: ["okay okay", "I'll stop stalling", "keep tapping..."],
+        gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWsyOTFydGtrdmUxaHJrd2Z5bmx4YXR6aXJzNzNxcWZpdjcxY21ydCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZ42mg6pbT3M3K/giphy.gif"
+      }
+    ],
+    finalSlide: {
+      emoji: "🎉💖",
+      heading: "Happy Birthday!",
+      sub: "now go see the rest 👇",
+      buttonLabel: "Open your page ✨",
+      gif: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p0eGNwYWh1ZjQxZnB0YnIwb2Qxc2lndG5mNms3eTNpNXp0bnJleSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LqU7ZolDscy79U2gTU/giphy.gif"
+    }
+  },
+
+  // ── TEXT CONTENT ───────────────────────────────────────────────────────
+  messages: {
+    birthdayWishes: [
+      { text: "May this year hand you every soft, golden thing you've been hoping for.", emoji: "🌸", color: "#FF6B9D" },
+      { text: "Here's to more laughter, more adventures, and more you.", emoji: "🎉", color: "#FFB347" },
+      { text: "The world got a little brighter the day you were born.", emoji: "✨", color: "#C084FC" },
+      { text: "I hope your year is filled with moments that take your breath away.", emoji: "💫", color: "#67E8F9" },
+      { text: "You deserve every beautiful thing this world has to offer.", emoji: "🌹", color: "#FF6B9D" }
+    ],
+    reasonsYoureSpecial: [
+      "You remember the small things — how people take their coffee, what made them nervous last week.",
+      "You make ordinary Tuesdays feel like something worth showing up for.",
+      "You say 'I'm proud of you' out loud, which is rarer than it should be.",
+      "You've never once made someone feel small for asking a question.",
+      "You still send good morning texts. In this economy.",
+      "Your laugh is literally contagious. There's no cure.",
+      "You have this way of making everything feel safe."
+    ],
+    compliments: [
+      "Certified professional at making people feel at home 🏡",
+      "Your laugh is a public good 😂",
+      "You have never met a plant you didn't try to save 🌱",
+      "Emotionally intelligent AND remembers everyone's birthday 🧠",
+      "Walking, talking serotonin boost 💊",
+      "10/10 would trust you with my Netflix password 🔐"
+    ],
+    finalGoodbye: "That's the whole scrapbook — for now. Thank you for another year of letting us love you. Go blow out those candles. 🕯️✨",
+    hiddenMessages: [
+      "psst. you found one. 🫶",
+      "okay but you ARE the surprise ✨",
+      "confetti looks better on you 🎉",
+      "yes, we're still talking about your birthday 🎂",
+      "you're literally glowing right now ✨",
+      "this message self-destructs in 3... 2... just kidding 💖"
+    ],
+    popupMessages: [
+      "somebody's having a good birthday 👀",
+      "click around, there's more where that came from ✨",
+      "we made this because you deserve a whole production 🎬",
+      "hey, you're doing amazing sweetie 💅",
+      "warning: excessive cuteness ahead 🧸"
+    ],
+    randomCuteMessages: [
+      "You make the world softer just by being in it 🌸",
+      "Friendly reminder: you're someone's reason to smile today 😊",
+      "If you were a season, you'd be spring 🌷",
+      "Your vibe is immaculate, just so you know ✨",
+      "The universe really said 'let me make something perfect' 💫"
+    ]
+  },
+
+  // ── BIRTHDAY WISHES SECTION ───────────────────────────────────────────
+  birthdayWishesSection: {
+    eyebrow: "from the heart",
+    heading: "Birthday Wishes For You 🎂",
+    subheading: "Every single one of these is meant for you."
+  },
+
+  // ── LOVE LETTER ────────────────────────────────────────────────────────
+  loveLetter: {
+    title: "A Letter, Just for You 💌",
+    pages: [
+      "Dear you,\n\nI wanted to write this down before the day gets loud with cake and candles, because some things are easier to say on paper.",
+      "You have this way of making people feel like they matter — really matter, not just as a courtesy. I've watched you do it for strangers. I've felt it myself more times than I can count.",
+      "So today isn't just about another year passing. It's a small thank-you for every version of you I've gotten to know so far, and an excited hello to whoever you're becoming next.",
+      "Happy birthday. I hope this year is unreasonably kind to you.\n\nWith all my love, always. 💖"
+    ]
+  },
+
+  // ── TIMELINE ───────────────────────────────────────────────────────────
+  timeline: [
+    { year: "2019", label: "The day we met", emoji: "🌼" },
+    { year: "2021", label: "That road trip with no plan", emoji: "🚗" },
+    { year: "2023", label: "The year everything changed", emoji: "🌟" },
+    { year: "2025", label: "When we couldn't stop laughing", emoji: "😂" },
+    { year: "2026", label: "Right now — the best one yet", emoji: "🎂" }
+  ],
+
+  // ── MEMORIES (unlimited — copy an object to add another card) ─────────
+  memories: {
+    sectionEyebrow: "the good stuff",
+    sectionHeading: "Memories Worth Keeping 💭",
+    items: [
+      {
+        title: "The Bookstore We Almost Didn't Find",
+        date: "March 2023",
+        photo: { src: "", alt: "Bookstore memory" },
+        description: "Forty-five minutes of walking in the rain for a bookstore that turned out to be closed. The mango ice cream after made it worth it.",
+        emoji: "📚",
+        gif: "rain",
+        location: "Downtown"
+      },
+      {
+        title: "First Camping Trip",
+        date: "July 2024",
+        photo: { src: "", alt: "Camping memory" },
+        description: "You were convinced there was a bear nearby. It was a raccoon. You still bring it up.",
+        emoji: "🏕️",
+        gif: "stars",
+        location: "Pine Ridge"
+      },
+      {
+        title: "The Surprise That Actually Worked",
+        date: "January 2025",
+        photo: { src: "", alt: "Surprise memory" },
+        description: "One of maybe three surprises in history that you didn't see coming.",
+        emoji: "🎉",
+        gif: "confetti",
+        location: ""
+      },
+      {
+        title: "Late Night Ice Cream Run",
+        date: "September 2025",
+        photo: { src: "", alt: "Ice cream memory" },
+        description: "2 AM. Gas station ice cream. Your best ideas come after midnight.",
+        emoji: "🍦",
+        gif: "sparkles",
+        location: ""
+      }
+    ]
+  },
+
+  // ── MEDIA: PHOTOS & GALLERY ─────────────────────────────────────────────
+  gallery: {
+    sectionEyebrow: "exhibit a, b, and c",
+    sectionHeading: "The Photo Wall 📸",
+    albums: [
+      {
+        name: "Childhood",
+        emoji: "👶",
+        photos: [
+          { src: "", alt: "Childhood photo 1", caption: "The gap-tooth years" },
+          { src: "", alt: "Childhood photo 2", caption: "Already plotting world domination" },
+          { src: "", alt: "Childhood photo 3", caption: "" }
+        ]
+      },
+      {
+        name: "Recent",
+        emoji: "📱",
+        photos: [
+          { src: "", alt: "Recent photo 1", caption: "Main character energy" },
+          { src: "", alt: "Recent photo 2", caption: "" },
+          { src: "", alt: "Recent photo 3", caption: "No filter needed" }
+        ]
+      },
+      {
+        name: "Us",
+        emoji: "💕",
+        photos: [
+          { src: "", alt: "Together photo 1", caption: "The iconic duo" },
+          { src: "", alt: "Together photo 2", caption: "" }
+        ]
+      },
+      {
+        name: "Selfies",
+        emoji: "🤳",
+        photos: [
+          { src: "", alt: "Selfie 1", caption: "Serving looks" },
+          { src: "", alt: "Selfie 2", caption: "" }
+        ]
+      }
+    ]
+  },
+
+  // ── VOICE MESSAGE (cassette player) ─────────────────────────────────────
+  voiceMessage: {
+    title: "A Voice Note For You 🎙️",
+    audioSrc: "",                    // e.g. "assets/voice-message.mp3"
+    durationLabel: "0:47",
+    cassetteLabel: "side A — recorded with love"
+  },
+
+  // ── VIDEO MESSAGE (cinematic player) ─────────────────────────────────────
+  videoMessage: {
+    title: "One Last Thing... 🎬",
+    videoSrc: "",                    // e.g. "assets/video-message.mp4"
+    thumbnailSrc: "",
+    subtitles: [
+      { time: 0, text: "Hey... yeah, this is happening." },
+      { time: 3, text: "Happy birthday, seriously." },
+      { time: 6, text: "You deserve the whole world." }
+    ]
+  },
+
+  // ── MUSIC PLAYER ───────────────────────────────────────────────────────
+  music: {
+    autoplay: false,
+    loop: true,
+    shuffle: false,
+    defaultVolume: 0.5,
+    playlist: [
+      { title: "Perfect", artist: "Ed Sheeran", src: "" },
+      { title: "Happy Birthday", artist: "Stevie Wonder", src: "" },
+      { title: "Add another song", artist: "Artist name", src: "" }
+    ]
+  },
+
+  // ── HOBBIES & TRAITS SECTION ──────────────────────────────────────────
+  hobbiesSection: {
+    eyebrow: "the fun file",
+    heading: "Things That Make You, You ✨"
+  },
+
+  // ── DREAM DESTINATION SECTION ─────────────────────────────────────────
+  dreamSection: {
+    eyebrow: "someday soon",
+    heading: "Dream Destination 🌍"
+  },
+
+  // ── REASONS SECTION ───────────────────────────────────────────────────
+  reasonsSection: {
+    eyebrow: "for the record",
+    heading: "Reasons You're Special 💖"
+  },
+
+  // ── SURPRISES ──────────────────────────────────────────────────────────
+  surprises: {
+    confettiOnOpen: true,
+    shootingStarWishEnabled: true,
+    secretButtonEnabled: true,
+    floatingHeartsOnClick: true,
+    randomSparkles: true,
+    teddyPopup: true,
+    emotionalPopup: true,
+    hiddenGiftsCount: 3,               // how many hidden gifts scattered in sections
+    starWishMessage: "Make a wish upon the star... ⭐"
+  },
+
+  // ── PARTICLES ──────────────────────────────────────────────────────────
+  particles: {
+    enabled: true,
+    sakura: true,
+    hearts: true,
+    sparkles: true,
+    butterflies: false,                // set true for butterfly particles
+    density: 25,                       // number of particles (15–40 recommended)
+    speed: 0.8                         // animation speed multiplier
+  },
+
+  // ── SECTION EMOJIS (decorative floating emojis per section) ────────────
+  sectionEmojis: {
+    hero:       ["✨", "🎂", "🎉", "💖", "⭐"],
+    wishes:     ["🎂", "🎉", "🎁", "🎈", "🥳"],
+    favorites:  ["🎨", "🌸", "🎵", "🍰", "🦊"],
+    hobbies:    ["🎨", "📚", "🌙", "✏️", "🎸"],
+    timeline:   ["🌼", "🚗", "🌟", "📸", "💫"],
+    memories:   ["💭", "📷", "🌈", "☁️", "🧸"],
+    gallery:    ["📸", "🖼️", "✨", "💕", "🎞️"],
+    letter:     ["💌", "💝", "🌹", "📝", "💗"],
+    reasons:    ["💖", "⭐", "🌟", "💫", "✨"],
+    dream:      ["🌸", "✈️", "🗺️", "🌏", "🌅"],
+    voice:      ["🎙️", "🎵", "🎶", "💿", "📻"],
+    video:      ["🎬", "📽️", "🎥", "🍿", "🌟"],
+    finale:     ["🎆", "💖", "🌙", "⭐", "🎊"]
+  }
+};
+
+// Do not edit below this line
+if (typeof module !== "undefined") module.exports = CONFIG;
