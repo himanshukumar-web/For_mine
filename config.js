@@ -42,9 +42,6 @@ const CONFIG = {
       emoji: "🦊"
     },
     memory: "The rainy afternoon we got lost looking for that tiny bookstore and found the best mango ice cream instead.",
-    dreamDestination: "Kyoto, Japan",
-    dreamDestinationEmoji: "🌸",
-    dreamDestinationDescription: "Cherry blossoms, ancient temples, and matcha everything — we'll get there someday.",
     hobbies: ["Painting", "Late-night baking", "Thrifting", "Journaling", "Stargazing"],
     personalityTraits: ["Warm-hearted", "Curious", "Stubbornly kind", "Terrible at keeping secrets", "Effortlessly funny"]
   },
@@ -74,7 +71,7 @@ const CONFIG = {
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
     heroImage:  { src: "", alt: "Hero photo" },
-    heroGif:    { src: "https://i.giphy.com/10UeedrT5MIfPG.gif", alt: "Anime Birthday Celebration GIF" }
+    heroGif:    { src: "https://i.giphy.com/MDJ9Ibxa5ev5p9qxyV.gif", alt: "Mochi Cat Candy Sticker" }
   },
 
   // ── STORY MODE ─────────────────────────────────────────────────────────
@@ -86,32 +83,32 @@ const CONFIG = {
       {
         emoji: "😍",
         lines: ["Hii you", "yes, you", "reading this right now"],
-        gif: "https://i.giphy.com/kyLYXonQYYfwYDIeZl.gif"
+        gif: "https://i.giphy.com/vFKqnCdLPNOKc.gif"
       },
       {
         emoji: "🌤️",
         lines: ["Hope today's been", "treating you soft", "and a little bit magical"],
-        gif: "https://i.giphy.com/3o7TKMt1VVNkHV2PaE.gif"
+        gif: "https://i.giphy.com/ICOgUNjpvO0PC.gif"
       },
       {
         emoji: "🎂",
         lines: ["Because today isn't", "just any day...", "it's YOUR day!"],
-        gif: "https://i.giphy.com/l0MYt5jPR6QX5pnqM.gif"
+        gif: "https://i.giphy.com/CjmvTCZf2U3p09Cn0h.gif"
       },
       {
         emoji: "🥹",
         lines: ["So I made you", "this whole tiny website", "instead of just saying it"],
-        gif: "https://i.giphy.com/26ufdipQqU2lhNA4g.gif"
+        gif: "https://i.giphy.com/B9DP553b3Pzle.gif"
       },
       {
         emoji: "💖",
         lines: ["Thank you for being", "exactly who you are", "— don't ever change that!"],
-        gif: "https://i.giphy.com/26n6Wywq48ysWvyms.gif"
+        gif: "https://i.giphy.com/JPPN7pfe4v2RHNGLqV.gif"
       },
       {
         emoji: "🎉",
         lines: ["okay okay", "I'll stop stalling", "keep tapping..."],
-        gif: "https://i.giphy.com/131tNuGktpXGhy.gif"
+        gif: "https://i.giphy.com/lJ0JGfNBr3up83yQTk.gif"
       }
     ],
     finalSlide: {
@@ -119,7 +116,7 @@ const CONFIG = {
       heading: "Happy Birthday!",
       sub: "now go see the rest 👇",
       buttonLabel: "Open your page ✨",
-      gif: "https://i.giphy.com/10UeedrT5MIfPG.gif"
+      gif: "https://i.giphy.com/CjmvTCZf2U3p09Cn0h.gif"
     }
   },
 
@@ -324,12 +321,6 @@ const CONFIG = {
   hobbiesSection: {
     eyebrow: "the fun file",
     heading: "Things That Make You, You ✨"
-  },
-
-  // ── DREAM DESTINATION SECTION ─────────────────────────────────────────
-  dreamSection: {
-    eyebrow: "someday soon",
-    heading: "Dream Destination 🌍"
   },
 
   // ── REASONS SECTION ───────────────────────────────────────────────────

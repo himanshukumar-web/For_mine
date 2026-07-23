@@ -686,12 +686,22 @@
 
     function typewrite(text) {
       clearInterval(typing);
-      pageEl.textContent = "";
+      pageEl.innerHTML = "";
       let i = 0;
+      const textSpan = document.createElement("span");
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "typewriter-cursor";
+      cursorSpan.textContent = "✍️";
+      pageEl.appendChild(textSpan);
+      pageEl.appendChild(cursorSpan);
+
       typing = setInterval(() => {
-        pageEl.textContent = text.slice(0, i);
+        textSpan.textContent = text.slice(0, i);
         i++;
-        if (i > text.length) clearInterval(typing);
+        if (i > text.length) {
+          clearInterval(typing);
+          cursorSpan.style.display = "none";
+        }
       }, 16);
     }
 
@@ -702,9 +712,13 @@
       pageNum.textContent = `page ${page + 1} of ${pages.length}`;
     }
 
-    envelope.addEventListener("click", () => {
+    envelope.addEventListener("click", (e) => {
       if (envelope.classList.contains("is-open")) return;
       envelope.classList.add("is-open");
+      burstConfetti(45);
+      if (window.burstFireworks) {
+        window.burstFireworks(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, 55);
+      }
       setTimeout(() => {
         book.hidden = false;
         showPage(0);
