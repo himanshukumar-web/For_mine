@@ -167,6 +167,7 @@
     if (!c.particles?.enabled) return;
 
     const canvas = $("#particleCanvas");
+    if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d");
     let particles = [];
     let animId;
@@ -284,7 +285,7 @@
   ===================================================================== */
   (function setupFireworks() {
     const canvas = $("#fireworksCanvas");
-    if (!canvas) return;
+    if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d");
     let particles = [];
 
@@ -525,7 +526,8 @@
       card.innerHTML = `
         <span class="wish-card__emoji">${wish.emoji || "🎂"}</span>
         <p class="wish-card__text">${typeof wish === "string" ? wish : wish.text}</p>`;
-      card.querySelector(".wish-card__emoji").style.filter = `drop-shadow(0 4px 12px ${color}40)`;
+      const emojiEl = card.querySelector(".wish-card__emoji");
+      if (emojiEl) emojiEl.style.filter = `drop-shadow(0 4px 12px ${color}40)`;
       card.style.cssText += `border-top: 3px solid ${color}; `;
       grid.appendChild(card);
     });
@@ -767,18 +769,7 @@
     });
   })();
 
-  /* =====================================================================
-     DREAM DESTINATION
-  ===================================================================== */
-  (function renderDream() {
-    const cfg = c.dreamSection || {};
-    if (cfg.eyebrow) $("#dreamEyebrow").textContent = cfg.eyebrow;
-    if (cfg.heading) $("#dreamHeading").textContent = cfg.heading;
 
-    $("#dreamEmoji").textContent = c.person.dreamDestinationEmoji || "🌍";
-    $("#dreamPlace").textContent = c.person.dreamDestination || "Somewhere Beautiful";
-    $("#dreamDesc").textContent = c.person.dreamDestinationDescription || "";
-  })();
 
   /* =====================================================================
      VOICE MESSAGE — cassette player
