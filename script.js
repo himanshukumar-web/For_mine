@@ -280,6 +280,77 @@
   }
 
   /* =====================================================================
+     FIREWORKS ENGINE — Canvas-based interactive fireworks
+  ===================================================================== */
+  (function setupFireworks() {
+    const canvas = $("#fireworksCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    class FireworkParticle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 7;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.alpha = 1;
+        this.decay = 0.015 + Math.random() * 0.02;
+        this.color = color || ["#FF6B9D", "#FFB347", "#C084FC", "#67E8F9", "#FFD700", "#FF4500", "#00FFCC"][Math.floor(Math.random() * 7)];
+        this.size = 2 + Math.random() * 3.5;
+        this.gravity = 0.09;
+      }
+      update() {
+        this.vx *= 0.95;
+        this.vy *= 0.95;
+        this.vy += this.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= this.decay;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    window.burstFireworks = function(x, y, count = 45) {
+      const colors = ["#FF6B9D", "#FFB347", "#C084FC", "#67E8F9", "#FFD700", "#FF4500", "#00FFCC", "#FF69B4"];
+      for (let i = 0; i < count; i++) {
+        particles.push(new FireworkParticle(x || window.innerWidth / 2, y || window.innerHeight / 2, colors[Math.floor(Math.random() * colors.length)]));
+      }
+    };
+
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        if (p.alpha <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+
+  /* =====================================================================
      GIFT BOX + STORY MODE
   ===================================================================== */
   const giftScreen = $("#giftScreen");
@@ -366,9 +437,12 @@
   }
 
   // Gift box click
-  $("#giftBox").addEventListener("click", () => {
+  $("#giftBox").addEventListener("click", (e) => {
     startBackgroundMusic();
     burstConfetti(40);
+    if (window.burstFireworks) {
+      window.burstFireworks(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, 50);
+    }
     giftScreen.classList.add("is-open");
     setTimeout(() => {
       giftScreen.style.display = "none";
@@ -927,13 +1001,16 @@
     el.addEventListener("animationend", () => el.remove());
   }
 
-  // Floating hearts on click
+  // Floating hearts & fireworks on click
   if (c.surprises.floatingHeartsOnClick) {
     document.addEventListener("click", (e) => {
       if (giftScreen.contains(e.target) || storyScreen.contains(e.target)) return;
       if (e.target.closest(".music-player") || e.target.closest(".lightbox") || e.target.closest(".surprise-modal")) return;
       if (Math.random() < 0.3) {
         spawnFloatie(e.clientX + (Math.random() - 0.5) * 20, e.clientY);
+      }
+      if (Math.random() < 0.2 && window.burstFireworks) {
+        window.burstFireworks(e.clientX, e.clientY, 25);
       }
     });
   }
@@ -972,13 +1049,14 @@
   // Secret button
   if (c.surprises.secretButtonEnabled) {
     let secretClickCount = 0;
-    $("#secretButton").addEventListener("click", () => {
+    $("#secretButton").addEventListener("click", (e) => {
       secretClickCount++;
       const messages = c.messages.hiddenMessages || [];
       if (messages.length) {
         showPopup(messages[Math.floor(Math.random() * messages.length)]);
       }
       burstConfetti(20);
+      if (window.burstFireworks) window.burstFireworks(e.clientX, e.clientY, 45);
 
       // After multiple clicks, show teddy popup
       if (secretClickCount % 5 === 0 && c.surprises.teddyPopup) {
@@ -996,6 +1074,7 @@
     $("#surpriseText").textContent = text || "";
     modal.hidden = false;
     burstConfetti(30);
+    if (window.burstFireworks) window.burstFireworks(window.innerWidth / 2, window.innerHeight / 3, 55);
   }
 
   $("#surpriseClose").addEventListener("click", () => {
