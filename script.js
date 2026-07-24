@@ -497,8 +497,12 @@
 
   // Gift box click & touch
   const giftBoxBtn = $("#giftBox");
+  let hasOpened = false;
+  window.resetGiftBox = function() {
+    hasOpened = false;
+    if (giftBoxBtn) giftBoxBtn.classList.remove("is-open");
+  };
   if (giftBoxBtn) {
-    let hasOpened = false;
     function handleGiftOpen(e) {
       if (hasOpened) return;
       hasOpened = true;
@@ -715,14 +719,28 @@
     (cfg.items || []).forEach((mem) => {
       const card = document.createElement("div");
       card.className = "memory-card";
-      const slot = photoSlot({
-        ...mem.photo,
-        label: "📸 Add Memory Photo",
-        polaroid: true,
-        tilt: (Math.random() * 6 - 3).toFixed(1),
-        caption: ""
-      });
-      card.appendChild(slot);
+
+      const vSrc = mem.videoSrc || mem.video?.videoSrc || mem.Video?.videoSrc;
+      if (vSrc) {
+        const videoWrap = document.createElement("div");
+        videoWrap.className = "photo-slot photo-slot--polaroid";
+        videoWrap.style.setProperty("--tilt", (Math.random() * 6 - 3).toFixed(1) + "deg");
+        const video = document.createElement("video");
+        video.src = vSrc;
+        video.controls = true;
+        video.style.cssText = "width:100%;height:180px;object-fit:cover;border-radius:var(--radius-sm);";
+        videoWrap.appendChild(video);
+        card.appendChild(videoWrap);
+      } else {
+        const slot = photoSlot({
+          ...mem.photo,
+          label: "📸 Add Memory Photo",
+          polaroid: true,
+          tilt: (Math.random() * 6 - 3).toFixed(1),
+          caption: ""
+        });
+        card.appendChild(slot);
+      }
 
       const meta = [mem.date, mem.location].filter(Boolean).join(" · ");
       const info = document.createElement("div");
@@ -1095,12 +1113,16 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       storyIndex = 0;
-      giftScreen.style.display = "flex";
-      giftScreen.classList.remove("is-open");
-      storyScreen.style.display = "none";
-      storyScreen.hidden = true;
+      if (window.resetGiftBox) window.resetGiftBox();
+      if (giftScreen) {
+        giftScreen.style.display = "flex";
+        giftScreen.classList.remove("is-open");
+      }
+      if (storyScreen) {
+        storyScreen.style.display = "none";
+        storyScreen.hidden = true;
+      }
       $("#site").setAttribute("aria-hidden", "true");
-      $("#musicPlayer").hidden = true;
       // Reset reveal classes on site so next entrance animates freshly!
       $$(".reveal").forEach((el) => el.classList.remove("is-visible"));
     }, 600);

@@ -234,37 +234,37 @@ const CONFIG = {
     sectionHeading: "Memories Worth Keeping 💭",
     items: [
       {
-        title: "The Bookstore We Almost Didn't Find",
-        date: "March 2023",
-        photo: { src: "", alt: "Bookstore memory" },
-        description: "Forty-five minutes of walking in the rain for a bookstore that turned out to be closed. The mango ice cream after made it worth it.",
+        title: "SGU 2.0 2026 HACKATHON",
+        date: "March 18",
+        videoSrc: "assets/memories-video-1.mp4",
+        description: "Tum sooti hui itni cute lag rahi thi to mane ek bs ek momories ke liye record kar li... But sach ma tum bahut cute lag rahi thi .",
         emoji: "📚",
         gif: "rain",
-        location: "Downtown"
+        location: "College"
       },
       {
-        title: "First Camping Trip",
-        date: "July 2024",
-        photo: { src: "", alt: "Camping memory" },
-        description: "You were convinced there was a bear nearby. It was a raccoon. You still bring it up.",
+        title: "GNIOT GIRLS HACKATHON",
+        date: "March 30",
+        photo: { src: "assets/memory-13.jpeg", alt: "Camping memory" },
+        description: "TUM JAB US DIN JA RAHI THI HACKATHON M US TIME MA THORA LATE HO GAYA H THA TO TUMNE MERA WAIT KIYA THA OR THORA DAATA KI LATE KYU HO JATA HO... VO MOMEMT MUHJHE BAHUT ACCHA LAGA THA OR ABHI THA YAAD H KI TUM MUJHE DEKH KE EK DUM SE KHUSH HUI THI...",
         emoji: "🏕️",
         gif: "stars",
-        location: "Pine Ridge"
+        location: "College"
       },
       {
-        title: "The Surprise That Actually Worked",
-        date: "January 2025",
-        photo: { src: "", alt: "Surprise memory" },
-        description: "One of maybe three surprises in history that you didn't see coming.",
+        title: "Hackathon ",
+        date: "March 20",
+        photo: { src: "assets/memory-14.jpeg", alt: "Surprise memory" },
+        description: "ye pic tumhari or meri phele pi thi ek sath ki to ye moments bi yaad h mujhe.",
         emoji: "🎉",
         gif: "confetti",
-        location: ""
+        location: "College"
       },
       {
         title: "Late Night Ice Cream Run",
-        date: "September 2025",
-        photo: { src: "", alt: "Ice cream memory" },
-        description: "2 AM. Gas station ice cream. Your best ideas come after midnight.",
+        date: "March 17",
+        photo: { src: "assets/memory-5.jpeg", alt: "Ice cream memory" },
+        description: "ye to yaad ho mam apko ye jab m first time laya tha is ko college ma ap isme bahut hi prrety lag rahi thi.",
         emoji: "🍦",
         gif: "sparkles",
         location: ""
@@ -278,37 +278,37 @@ const CONFIG = {
     sectionHeading: "The Photo Wall 📸",
     albums: [
       {
-        name: "Childhood",
+        name: "College",
         emoji: "👶",
         photos: [
-          { src: "", alt: "Childhood photo 1", caption: "The gap-tooth years" },
-          { src: "", alt: "Childhood photo 2", caption: "Already plotting world domination" },
-          { src: "", alt: "Childhood photo 3", caption: "" }
+          { src: "assets/gallery-1.jpg", alt: "College photo 1", caption: "The gap-tooth years" },
+          { src: "assets/gallery-2.jpg", alt: "College photo 2", caption: "Already plotting world domination" },
+          { src: "assets/gallery-3.jpeg", alt: "College photo 3", caption: "Bestie forever" }
         ]
       },
       {
         name: "Recent",
         emoji: "📱",
         photos: [
-          { src: "", alt: "Recent photo 1", caption: "Main character energy" },
-          { src: "", alt: "Recent photo 2", caption: "" },
-          { src: "", alt: "Recent photo 3", caption: "No filter needed" }
+          { src: "assets/gallery-4.jpeg", alt: "Recent photo 1", caption: "Main character energy" },
+          { src: "assets/gallery-5.jpeg", alt: "Recent photo 2", caption: "" },
+          { src: "assets/gallery-6.jpeg", alt: "Recent photo 3", caption: "No filter needed" }
         ]
       },
       {
         name: "Us",
         emoji: "💕",
         photos: [
-          { src: "", alt: "Together photo 1", caption: "The iconic duo" },
-          { src: "", alt: "Together photo 2", caption: "" }
+          { src: "assets/gallery-7.jpeg", alt: "Together photo 1", caption: "The iconic duo" },
+          { src: "assets/gallery-8.jpeg", alt: "Together photo 2", caption: "" }
         ]
       },
       {
         name: "Selfies",
         emoji: "🤳",
         photos: [
-          { src: "", alt: "Selfie 1", caption: "Serving looks" },
-          { src: "", alt: "Selfie 2", caption: "" }
+          { src: "assets/gallery-9.jpeg", alt: "Selfie 1", caption: "Serving looks" },
+          { src: "assets/gallery-10.jpeg", alt: "Selfie 2", caption: "" }
         ]
       }
     ]
