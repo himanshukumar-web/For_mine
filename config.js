@@ -70,7 +70,7 @@ const CONFIG = {
     heading: "Happy Birthday, Diksha! ✨",
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
-    heroImage: { src: "", alt: "Hero photo" },
+    heroImage: { src: "assets/hero-photo.jpeg", alt: "Hero photo" },
     heroGif: { src: "https://i.giphy.com/MDJ9Ibxa5ev5p9qxyV.gif", alt: "Mochi Cat Candy Sticker" }
   },
 
