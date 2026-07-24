@@ -122,14 +122,13 @@
   }
 
   /* =====================================================================
-     SCROLL REVEAL — IntersectionObserver
+     SCROLL REVEAL — IntersectionObserver + Scroll Fallback
   ===================================================================== */
   function setupScrollReveal() {
-    // Add reveal class to elements
     const revealTargets = [
-      ".wish-card", ".fav-card", ".hobby-tag", ".trait-tag",
+      ".wish-card-flip", ".fav-card", ".hobby-tag", ".trait-tag",
       ".timeline__item", ".memory-card", ".photo-slot",
-      ".cinema", ".reasons__carousel",
+      ".cinema", ".video-flip-card", ".reasons__carousel",
       ".letterbook", ".envelope", ".hero__photo-wrap",
       ".hero__heading", ".hero__sub", ".hero__age-badge",
       ".section-title", ".eyebrow",
@@ -140,24 +139,38 @@
     revealTargets.forEach((sel) => {
       $$(sel).forEach((el, i) => {
         el.classList.add("reveal");
-        // Stagger delays for grid items
         const delay = Math.min(i, 4);
         if (delay > 0) el.classList.add("reveal-delay-" + delay);
       });
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-    );
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
+      );
+      $$(".reveal").forEach((el) => observer.observe(el));
+    }
 
-    $$(".reveal").forEach((el) => observer.observe(el));
+    // Scroll fallback to guarantee pop-up reveal
+    function checkRevealOnScroll() {
+      const winH = window.innerHeight;
+      $$(".reveal:not(.is-visible)").forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= winH - 30) {
+          el.classList.add("is-visible");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", checkRevealOnScroll, { passive: true });
+    checkRevealOnScroll();
   }
 
   /* =====================================================================
@@ -770,7 +783,8 @@
      LOVE LETTER — envelope + typewriter
   ===================================================================== */
   (function setupLetter() {
-    $("#letterTitle").textContent = c.loveLetter.title || "A Letter, Just for You 💌";
+    const titleEl = $("#letterTitle");
+    if (titleEl) titleEl.textContent = c.loveLetter?.title || "A Letter, Just for You 💌";
     const envelope = $("#envelope");
     const book = $("#letterbook");
     const pageEl = $("#letterPage");
@@ -779,7 +793,8 @@
     let typing = null;
 
     function typewrite(text) {
-      clearInterval(typing);
+      if (typing) clearInterval(typing);
+      if (!pageEl) return;
       pageEl.innerHTML = "";
       let i = 0;
       const textSpan = document.createElement("span");
@@ -800,27 +815,34 @@
     }
 
     function showPage(i) {
-      const pages = c.loveLetter.pages || [];
+      const pages = c.loveLetter?.pages || [];
+      if (!pages.length) return;
       page = Math.max(0, Math.min(i, pages.length - 1));
       typewrite(pages[page] || "");
-      pageNum.textContent = `page ${page + 1} of ${pages.length}`;
+      if (pageNum) pageNum.textContent = `page ${page + 1} of ${pages.length}`;
     }
 
-    envelope.addEventListener("click", (e) => {
-      if (envelope.classList.contains("is-open")) return;
-      envelope.classList.add("is-open");
-      burstConfetti(45);
-      if (window.burstFireworks) {
-        window.burstFireworks(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, 55);
-      }
-      setTimeout(() => {
-        book.hidden = false;
+    if (envelope) {
+      function openEnvelope(e) {
+        if (e && e.cancelable) e.preventDefault();
+        envelope.classList.add("is-open");
+        burstConfetti(45);
+        if (window.burstFireworks) {
+          const x = (e && e.clientX) || window.innerWidth / 2;
+          const y = (e && e.clientY) || window.innerHeight / 2;
+          window.burstFireworks(x, y, 55);
+        }
+        if (book) book.hidden = false;
         showPage(0);
-      }, 600);
-    });
+      }
+      envelope.addEventListener("click", openEnvelope);
+      envelope.addEventListener("touchend", openEnvelope);
+    }
 
-    $("#letterPrev").addEventListener("click", () => showPage(page - 1));
-    $("#letterNext").addEventListener("click", () => showPage(page + 1));
+    const prevBtn = $("#letterPrev");
+    const nextBtn = $("#letterNext");
+    if (prevBtn) prevBtn.addEventListener("click", () => showPage(page - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => showPage(page + 1));
   })();
 
   /* =====================================================================
