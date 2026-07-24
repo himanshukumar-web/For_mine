@@ -71,7 +71,7 @@ const CONFIG = {
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
     heroImage: { src: "assets/hero-photo.jpeg", alt: "Hero photo" },
-    heroGif: { src: "https://i.giphy.com/MDJ9Ibxa5ev5p9qxyV.gif", alt: "Mochi Cat Candy Sticker" }
+    heroGif: { src: "https://media.giphy.com/media/l4KibW1bB5FqVJqiY/giphy.gif", alt: "Mochi Cat Birthday Sticker" }
   },
 
   // ── STORY MODE ─────────────────────────────────────────────────────────
@@ -82,41 +82,41 @@ const CONFIG = {
     slides: [
       {
         emoji: "😍",
-        lines: ["Hii you", "yes, you", "reading this right now"],
-        gif: "https://i.giphy.com/vFKqnCdLPNOKc.gif"
+        lines: ["Hii Madam Ji", "yes, you", "reading this right now ✨"],
+        gif: "https://media.giphy.com/media/MDJ9Ibxa5ev5p9qxyV/giphy.gif"
       },
       {
         emoji: "🌤️",
-        lines: ["Hope today's been", "treating you soft", "and a little bit magical"],
-        gif: "https://i.giphy.com/ICOgUNjpvO0PC.gif"
+        lines: ["Hope today's been", "treating you soft", "and a little bit magical 🌸"],
+        gif: "https://media.giphy.com/media/10UeedrT5MIfPG/giphy.gif"
       },
       {
         emoji: "🎂",
-        lines: ["Because today isn't", "just any day...", "it's YOUR day!"],
-        gif: "https://i.giphy.com/CjmvTCZf2U3p09Cn0h.gif"
+        lines: ["Because today isn't", "just any day...", "it's YOUR Birthday, Diksha! 🎂"],
+        gif: "https://media.giphy.com/media/CjmvTCZf2U3p09Cn0h/giphy.gif"
       },
       {
         emoji: "🥹",
-        lines: ["So I made you", "this whole tiny website", "instead of just saying it"],
-        gif: "https://i.giphy.com/B9DP553b3Pzle.gif"
+        lines: ["So I made you", "this whole tiny website", "instead of just saying it 💖"],
+        gif: "https://media.giphy.com/media/l1BgT1RSgqczvTFV6/giphy.gif"
       },
       {
         emoji: "💖",
-        lines: ["Thank you for being", "exactly who you are", "— don't ever change that!"],
-        gif: "https://i.giphy.com/JPPN7pfe4v2RHNGLqV.gif"
+        lines: ["Thank you for being", "exactly who you are", "— don't ever change that, Madam Ji! ✨"],
+        gif: "https://media.giphy.com/media/l4KibW1bB5FqVJqiY/giphy.gif"
       },
       {
         emoji: "🎉",
-        lines: ["okay okay", "I'll stop stalling", "keep tapping..."],
-        gif: "https://i.giphy.com/lJ0JGfNBr3up83yQTk.gif"
+        lines: ["okay okay", "I'll stop stalling", "keep tapping... 🥳"],
+        gif: "https://media.giphy.com/media/CjmvTCZf2U3p09Cn0h/giphy.gif"
       }
     ],
     finalSlide: {
       emoji: "🎉💖",
-      heading: "Happy Birthday!",
+      heading: "Happy Birthday Madam Ji!",
       sub: "now go see the rest 👇",
       buttonLabel: "Open your page ✨",
-      gif: "https://i.giphy.com/CjmvTCZf2U3p09Cn0h.gif"
+      gif: "https://media.giphy.com/media/MDJ9Ibxa5ev5p9qxyV/giphy.gif"
     }
   },
 
@@ -341,9 +341,10 @@ const CONFIG = {
     shuffle: false,
     defaultVolume: 0.5,
     playlist: [
-      { title: "Perfect", artist: "Ed Sheeran", src: "" },
-      { title: "Happy Birthday", artist: "Stevie Wonder", src: "" },
-      { title: "Add another song", artist: "Artist name", src: "" }
+      { title: "Main Background Track 🎧", artist: "Dedicated Special", spotifyId: "3oh7ZkhxNVDOTo8FDGBtsg", src: "" },
+      { title: "Dedicated Track 1 💖", artist: "Diksha Special", spotifyId: "71Z8EvPJ0gExPsQoRQ8au5", src: "" },
+      { title: "Dedicated Track 2 ✨", artist: "Distance Love", spotifyId: "55nRhkhe7ckZhazYrv6ZOX", src: "" },
+      { title: "Dedicated Track 3 🌸", artist: "Special Track", spotifyId: "28i6L2AnMOlezqxUhc9TYL", src: "" }
     ]
   },
 

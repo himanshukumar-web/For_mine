@@ -1023,19 +1023,24 @@
     const toggle = $("#musicToggle");
     const audio = $("#musicAudio");
     const playPause = $("#musicPlayPause");
+    const muteBtn = $("#musicMute");
     const nowEl = $("#musicNow");
     const listEl = $("#musicPlaylist");
     const volume = $("#musicVolume");
     const progressEl = $("#musicProgress");
     let idx = 0;
-    let shuffle = c.music.shuffle;
 
     const playlist = (c.music.playlist || []).filter((t) => t.title);
-    audio.loop = false;
-    volume.value = c.music.defaultVolume ?? 0.5;
-    audio.volume = volume.value;
+    if (audio) {
+      audio.loop = !!c.music?.loop;
+      if (volume) {
+        volume.value = c.music.defaultVolume ?? 0.5;
+        audio.volume = volume.value;
+      }
+    }
 
     function renderList() {
+      if (!listEl) return;
       listEl.innerHTML = "";
       playlist.forEach((track, i) => {
         const li = document.createElement("li");
@@ -1050,57 +1055,70 @@
       if (!playlist.length) return;
       idx = (i + playlist.length) % playlist.length;
       const track = playlist[idx];
-      nowEl.textContent = track.src ? `${track.title} — ${track.artist || ""}` : `${track.title} (no file)`;
-      if (track.src) audio.src = track.src;
+      if (nowEl) nowEl.textContent = `${track.title} — ${track.artist || ""}`;
+      if (track.src && audio) audio.src = track.src;
+
+      // Trigger Single Active Spotify Player track button if spotifyId exists
+      if (track.spotifyId) {
+        const tabBtn = $(`button[data-track-id="${track.spotifyId}"]`);
+        if (tabBtn) tabBtn.click();
+      }
+
       renderList();
-      if (autoplay && track.src) play();
+      if (autoplay && track.src && audio) play();
     }
 
     function play() {
-      if (!audio.src) {
-        showPopup("add a song file in config.js to play music 🎵");
-        return;
+      if (audio && audio.src) {
+        audio.play().catch(() => {});
+        if (player) player.classList.add("is-playing");
+        if (playPause) playPause.textContent = "❚❚";
       }
-      audio.play().catch(() => {});
-      player.classList.add("is-playing");
-      playPause.textContent = "❚❚";
     }
     function pause() {
-      audio.pause();
-      player.classList.remove("is-playing");
-      playPause.textContent = "▶";
+      if (audio) audio.pause();
+      if (player) player.classList.remove("is-playing");
+      if (playPause) playPause.textContent = "▶";
     }
 
-    toggle.addEventListener("click", () => player.classList.toggle("is-open"));
-    playPause.addEventListener("click", () => (audio.paused ? play() : pause()));
-    $("#musicNext").addEventListener("click", () => {
-      loadTrack(shuffle ? Math.floor(Math.random() * playlist.length) : idx + 1, true);
-    });
-    $("#musicPrev").addEventListener("click", () => loadTrack(idx - 1, true));
-    $("#musicShuffle").addEventListener("click", (e) => {
-      shuffle = !shuffle;
-      e.currentTarget.style.opacity = shuffle ? "1" : "0.4";
-    });
-    volume.addEventListener("input", () => (audio.volume = volume.value));
+    if (toggle && player) toggle.addEventListener("click", () => player.classList.toggle("is-open"));
+    if (playPause) playPause.addEventListener("click", () => (audio && audio.paused ? play() : pause()));
+
+    // Mute / Unmute Button
+    if (muteBtn && audio) {
+      muteBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        muteBtn.textContent = audio.muted ? "🔇" : "🔊";
+      });
+    }
+
+    const nextBtn = $("#musicNext");
+    if (nextBtn) nextBtn.addEventListener("click", () => loadTrack(idx + 1, true));
+
+    const prevBtn = $("#musicPrev");
+    if (prevBtn) prevBtn.addEventListener("click", () => loadTrack(idx - 1, true));
+
+    if (volume && audio) volume.addEventListener("input", () => (audio.volume = volume.value));
 
     // Progress bar
-    audio.addEventListener("timeupdate", () => {
-      if (audio.duration) {
-        progressEl.style.width = (audio.currentTime / audio.duration * 100) + "%";
-      }
-    });
+    if (audio) {
+      audio.addEventListener("timeupdate", () => {
+        if (audio.duration && progressEl) {
+          progressEl.style.width = (audio.currentTime / audio.duration * 100) + "%";
+        }
+      });
 
-    audio.addEventListener("ended", () => {
-      if (c.music.loop && playlist.length === 1) {
-        audio.currentTime = 0;
-        audio.play();
-      } else {
-        loadTrack(shuffle ? Math.floor(Math.random() * playlist.length) : idx + 1, true);
-      }
-    });
+      audio.addEventListener("ended", () => {
+        if (c.music.loop && playlist.length === 1) {
+          audio.currentTime = 0;
+          audio.play();
+        } else {
+          loadTrack(idx + 1, true);
+        }
+      });
+    }
 
     if (playlist.length) loadTrack(0, false);
-    if (c.music.autoplay) play();
   })();
 
   /* =====================================================================
