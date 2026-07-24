@@ -341,10 +341,10 @@ const CONFIG = {
     shuffle: false,
     defaultVolume: 0.5,
     playlist: [
-      { title: "Main Background Track 🎧", artist: "Dedicated Special", spotifyId: "3oh7ZkhxNVDOTo8FDGBtsg", src: "" },
-      { title: "Dedicated Track 1 💖", artist: "Diksha Special", spotifyId: "71Z8EvPJ0gExPsQoRQ8au5", src: "" },
-      { title: "Dedicated Track 2 ✨", artist: "Distance Love", spotifyId: "55nRhkhe7ckZhazYrv6ZOX", src: "" },
-      { title: "Dedicated Track 3 🌸", artist: "Special Track", spotifyId: "28i6L2AnMOlezqxUhc9TYL", src: "" }
+      { title: "Romantic Birthday Melody 🎧", artist: "Dedicated to Madam Ji 💖", spotifyId: "3oh7ZkhxNVDOTo8FDGBtsg", src: "assets/song.mp3" },
+      { title: "Dedicated Track 1 💖", artist: "Diksha Special", spotifyId: "71Z8EvPJ0gExPsQoRQ8au5", src: "assets/song.mp3" },
+      { title: "Dedicated Track 2 ✨", artist: "Distance Love", spotifyId: "55nRhkhe7ckZhazYrv6ZOX", src: "assets/song.mp3" },
+      { title: "Dedicated Track 3 🌸", artist: "Special Track", spotifyId: "28i6L2AnMOlezqxUhc9TYL", src: "assets/song.mp3" }
     ]
   },
 
