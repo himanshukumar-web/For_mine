@@ -908,51 +908,92 @@
       });
     }
 
-    if (c.videoMessage.thumbnailSrc) {
+    $("#videoTitle").textContent = c.videoMessage?.title || "One Last Thing... 🎬";
+    const cinema = $("#cinema");
+    const screen = $("#cinemaScreen");
+    const playBtn = $("#cinemaPlay");
+    const subtitleEl = $("#cinemaSubtitle");
+
+    if (screen && c.videoMessage?.thumbnailSrc) {
       screen.style.backgroundImage = `url(${c.videoMessage.thumbnailSrc})`;
     }
 
     let videoEl = null;
 
-    playBtn.addEventListener("click", () => {
-      if (!c.videoMessage.videoSrc) {
-        showPopup("add a video file in config.js to watch this 🎬");
-        return;
-      }
-      cinema.classList.add("is-playing");
-      if (!videoEl) {
-        videoEl = document.createElement("video");
-        videoEl.src = c.videoMessage.videoSrc;
-        videoEl.controls = true;
-        videoEl.style.cssText = "width:100%;height:100%;object-fit:cover;";
-        screen.innerHTML = "";
-        screen.appendChild(videoEl);
-
-        videoEl.addEventListener("timeupdate", () => {
-          const subs = c.videoMessage.subtitles || [];
-          const active = [...subs].reverse().find((s) => videoEl.currentTime >= s.time);
-          subtitleEl.textContent = active ? active.text : "";
-        });
-
-        // Pause music when video plays
-        videoEl.addEventListener("play", () => {
-          const musicAudio = $("#musicAudio");
-          if (!musicAudio.paused) {
-            musicAudio.pause();
-            $("#musicPlayer").classList.remove("is-playing");
-            videoEl._musicWasPlaying = true;
+    if (playBtn) {
+      playBtn.addEventListener("click", () => {
+        if (!c.videoMessage?.videoSrc) {
+          showPopup("add a video file in config.js to watch this 🎬");
+          return;
+        }
+        if (cinema) cinema.classList.add("is-playing");
+        if (!videoEl) {
+          videoEl = document.createElement("video");
+          videoEl.src = c.videoMessage.videoSrc;
+          videoEl.controls = true;
+          videoEl.style.cssText = "width:100%;height:100%;object-fit:cover;";
+          if (screen) {
+            screen.innerHTML = "";
+            screen.appendChild(videoEl);
           }
-        });
-        videoEl.addEventListener("pause", () => {
-          if (videoEl._musicWasPlaying) {
+
+          videoEl.addEventListener("timeupdate", () => {
+            const subs = c.videoMessage?.subtitles || [];
+            const active = [...subs].reverse().find((s) => videoEl.currentTime >= s.time);
+            if (subtitleEl) subtitleEl.textContent = active ? active.text : "";
+          });
+
+          videoEl.addEventListener("play", () => {
             const musicAudio = $("#musicAudio");
-            musicAudio.play().catch(() => {});
-            $("#musicPlayer").classList.add("is-playing");
-            videoEl._musicWasPlaying = false;
-          }
-        });
-      }
-      videoEl.play();
+            if (musicAudio && !musicAudio.paused) {
+              musicAudio.pause();
+              if ($("#musicPlayer")) $("#musicPlayer").classList.remove("is-playing");
+              videoEl._musicWasPlaying = true;
+            }
+          });
+          videoEl.addEventListener("ended", () => {
+            if (cinema) cinema.classList.remove("is-playing");
+          });
+        }
+        videoEl.play();
+      });
+    }
+  })();
+
+  /* =====================================================================
+     SINGLE ACTIVE TRACK PLAYER (Only 1 Song Plays at a Time)
+  ===================================================================== */
+  (function setupSinglePlayer() {
+    const tabs = $$(".track-tab-btn");
+    const container = $("#singlePlayerIframeWrap");
+    const badgeEl = $("#activeTrackBadge");
+    const titleEl = $("#activeTrackName");
+    const audio = $("#musicAudio");
+
+    tabs.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        const trackId = btn.getAttribute("data-track-id");
+        const trackName = btn.getAttribute("data-track-name");
+        const badge = btn.getAttribute("data-badge");
+
+        // Stop background HTML5 audio if playing
+        if (audio && !audio.paused) {
+          try { audio.pause(); } catch(e) {}
+        }
+
+        if (badgeEl) badgeEl.textContent = badge;
+        if (titleEl) titleEl.textContent = trackName;
+
+        // Re-create iframe cleanly so ONLY THIS song plays!
+        if (container) {
+          container.innerHTML = `<iframe style="border-radius:14px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        }
+
+        try { burstConfetti(15); } catch(e) {}
+      });
     });
   })();
 
@@ -1068,7 +1109,9 @@
   /* =====================================================================
      SURPRISES — floating hearts, confetti, secret button, modals, stars
   ===================================================================== */
-  const floatLayer = $("#floatLayer");
+  function getFloatLayer() {
+    return $("#floatLayer") || document.body;
+  }
   const surpriseEmojis = ["💖", "✨", "🌸", "🦋", "⭐", "💕", "🌹", "🎀"];
 
   function spawnFloatie(x, y, emoji) {
@@ -1077,14 +1120,17 @@
     el.style.left = x + "px";
     el.style.top = y + "px";
     el.textContent = emoji || surpriseEmojis[Math.floor(Math.random() * surpriseEmojis.length)];
-    floatLayer.appendChild(el);
+    getFloatLayer().appendChild(el);
     el.addEventListener("animationend", () => el.remove());
   }
 
   // Floating hearts & fireworks on click
-  if (c.surprises.floatingHeartsOnClick) {
+  if (c.surprises?.floatingHeartsOnClick) {
     document.addEventListener("click", (e) => {
-      if (giftScreen.contains(e.target) || storyScreen.contains(e.target)) return;
+      const giftScreen = $("#giftScreen");
+      const storyScreen = $("#storyScreen");
+      if (giftScreen && giftScreen.contains(e.target)) return;
+      if (storyScreen && storyScreen.contains(e.target)) return;
       if (e.target.closest(".music-player") || e.target.closest(".lightbox") || e.target.closest(".surprise-modal")) return;
       if (Math.random() < 0.3) {
         spawnFloatie(e.clientX + (Math.random() - 0.5) * 20, e.clientY);
@@ -1096,8 +1142,9 @@
   }
 
   // Confetti burst
-  function burstConfetti(count) {
-    const colors = [c.theme.colors.primary, c.theme.colors.secondary, c.theme.colors.accent, c.theme.colors.tertiary || "#67E8F9"];
+  function burstConfetti(count = 30) {
+    const colors = [c.theme?.colors?.primary || "#FF5E8E", c.theme?.colors?.secondary || "#FFB703", c.theme?.colors?.accent || "#C084FC", "#7DD3FC"];
+    const layer = getFloatLayer();
     for (let i = 0; i < count; i++) {
       const piece = document.createElement("div");
       piece.className = "confetti-piece";
@@ -1108,7 +1155,7 @@
       piece.style.transform = `rotate(${Math.random() * 360}deg)`;
       piece.style.width = (5 + Math.random() * 8) + "px";
       piece.style.height = (8 + Math.random() * 10) + "px";
-      floatLayer.appendChild(piece);
+      layer.appendChild(piece);
       piece.addEventListener("animationend", () => piece.remove());
     }
   }

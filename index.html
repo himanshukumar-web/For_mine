@@ -182,34 +182,48 @@
     </div>
   </section>
 
-  <!-- DEDICATED MUSIC & SOUNDTRACK SECTION -->
+  <!-- DEDICATED MUSIC & SOUNDTRACK SECTION (SINGLE ACTIVE TRACK PLAYER) -->
   <section id="musicSection" class="page music-section" data-section="music">
     <div class="section-deco" aria-hidden="true"></div>
     <p class="eyebrow">our soundtrack</p>
     <h2 class="section-title gradient-text">Dedicated Songs For Madam Ji 🎵</h2>
     
-    <!-- MAIN BACKGROUND SONG SPOTIFY EMBED -->
-    <div class="spotify-main-card glass-card">
-      <div class="spotify-card-header">
-        <span class="spotify-badge">🎧 Background Special Song</span>
-        <h3 class="spotify-card-title">Main Background Track</h3>
+    <!-- SINGLE ACTIVE TRACK PLAYER CARD -->
+    <div class="single-player-card glass-card">
+      <div class="single-player-header">
+        <div class="vinyl-disk-small">
+          <div class="vinyl-center">🌸</div>
+        </div>
+        <div class="single-player-titles">
+          <span class="spotify-badge" id="activeTrackBadge">🎧 Background Track</span>
+          <h3 class="single-player-song-name" id="activeTrackName">Main Special Background Song</h3>
+        </div>
       </div>
-      <iframe style="border-radius:14px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/3oh7ZkhxNVDOTo8FDGBtsg?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
 
-    <!-- DEDICATED SPOTIFY PLAYLIST GRID -->
-    <div class="spotify-grid">
-      <div class="spotify-card glass-card">
-        <span class="spotify-tag">💖 Dedicated Track 1</span>
-        <iframe style="border-radius:12px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/71Z8EvPJ0gExPsQoRQ8au5?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <!-- SINGLE ACTIVE SPOTIFY EMBED CONTAINER -->
+      <div class="single-player-iframe-wrap" id="singlePlayerIframeWrap">
+        <iframe id="activeSpotifyIframe" style="border-radius:14px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/3oh7ZkhxNVDOTo8FDGBtsg?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
-      <div class="spotify-card glass-card">
-        <span class="spotify-tag">✨ Dedicated Track 2</span>
-        <iframe style="border-radius:12px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/55nRhkhe7ckZhazYrv6ZOX?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-      <div class="spotify-card glass-card">
-        <span class="spotify-tag">🌸 Dedicated Track 3</span>
-        <iframe style="border-radius:12px; width:100%; height:152px;" src="https://open.spotify.com/embed/track/28i6L2AnMOlezqxUhc9TYL?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+      <!-- TRACK SELECTOR TABS (CLICK TO PLAY ONLY ONE SONG AT A TIME) -->
+      <div class="track-tabs-label">Tap any song to play it (Only 1 song plays at a time 🎧):</div>
+      <div class="track-tabs-wrap">
+        <button class="track-tab-btn is-active" data-track-id="3oh7ZkhxNVDOTo8FDGBtsg" data-track-name="Main Background Special Song" data-badge="🎧 Background Track">
+          <span class="track-tab-icon">🎧</span>
+          <span class="track-tab-title">Background Special Song</span>
+        </button>
+        <button class="track-tab-btn" data-track-id="71Z8EvPJ0gExPsQoRQ8au5" data-track-name="Dedicated Song 1" data-badge="💖 Dedicated Track 1">
+          <span class="track-tab-icon">💖</span>
+          <span class="track-tab-title">Dedicated Track 1</span>
+        </button>
+        <button class="track-tab-btn" data-track-id="55nRhkhe7ckZhazYrv6ZOX" data-track-name="Dedicated Song 2" data-badge="✨ Dedicated Track 2">
+          <span class="track-tab-icon">✨</span>
+          <span class="track-tab-title">Dedicated Track 2</span>
+        </button>
+        <button class="track-tab-btn" data-track-id="28i6L2AnMOlezqxUhc9TYL" data-track-name="Dedicated Song 3" data-badge="🌸 Dedicated Track 3">
+          <span class="track-tab-icon">🌸</span>
+          <span class="track-tab-title">Dedicated Track 3</span>
+        </button>
       </div>
     </div>
   </section>
