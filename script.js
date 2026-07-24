@@ -835,11 +835,22 @@
      VIDEO MESSAGE — cinema player
   ===================================================================== */
   (function setupVideo() {
-    $("#videoTitle").textContent = c.videoMessage.title || "One Last Thing... 🎬";
-    const cinema = $("#cinema");
-    const screen = $("#cinemaScreen");
-    const playBtn = $("#cinemaPlay");
-    const subtitleEl = $("#cinemaSubtitle");
+    // Video & Favorites 3D Card Flip listeners
+    const videoCard = $("#videoFlipCard");
+    const flipToFavBtn = $("#flipToFavorites");
+    const flipToVidBtn = $("#flipToVideo");
+    if (videoCard && flipToFavBtn) {
+      flipToFavBtn.addEventListener("click", () => {
+        videoCard.classList.add("is-flipped");
+        burstConfetti(25);
+        if (window.burstFireworks) window.burstFireworks(window.innerWidth / 2, window.innerHeight / 2, 40);
+      });
+    }
+    if (videoCard && flipToVidBtn) {
+      flipToVidBtn.addEventListener("click", () => {
+        videoCard.classList.remove("is-flipped");
+      });
+    }
 
     if (c.videoMessage.thumbnailSrc) {
       screen.style.backgroundImage = `url(${c.videoMessage.thumbnailSrc})`;

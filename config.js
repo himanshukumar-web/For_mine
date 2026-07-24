@@ -22,28 +22,28 @@ const CONFIG = {
   // ── PERSONAL DETAILS ──────────────────────────────────────────────────
   person: {
     name: "Diksha",
-    nickname: "Sunshine",
+    nickname: "Madam Ji",
     birthdayDate: "2006-07-25",       // YYYY-MM-DD
     age: 20,
     zodiac: "Leo ♌",                  // set to "" to hide
     favorites: {
-      color: "Lavender Pink",
-      flower: "Peony",
-      animal: "Fox",
-      food: "Ramen",
-      dessert: "Tiramisu",
-      chocolate: "Dark Chocolate Truffles",
-      drink: "Iced Matcha Latte",
-      movie: "Spirited Away",
-      anime: "Your Name",
-      song: "Perfect",
-      singer: "Ed Sheeran",
-      quote: "\"Not all those who wander are lost.\"",
-      emoji: "🦊"
+      color: "Lavender Pink 🌸",
+      flower: "Peony & Rose 🌹",
+      animal: "Cute Panda & Cat 🐼🐱",
+      food: "Ramen & Pizza 🍜🍕",
+      dessert: "Chocolate Tiramisu 🍰",
+      chocolate: "Dark Chocolate Truffles 🍫",
+      drink: "Iced Caramel Macchiato 🥤",
+      movie: "Spirited Away 🎬",
+      anime: "Your Name 📺",
+      song: "Perfect - Ed Sheeran 🎵",
+      singer: "Arijit Singh 🎤",
+      quote: "\"Tere muskuraane se hi meri duniya mein roshni hai.\"",
+      emoji: "💖"
     },
-    memory: "The rainy afternoon we got lost looking for that tiny bookstore and found the best mango ice cream instead.",
-    hobbies: ["Painting", "Late-night baking", "Thrifting", "Journaling", "Stargazing"],
-    personalityTraits: ["Warm-hearted", "Curious", "Stubbornly kind", "Terrible at keeping secrets", "Effortlessly funny"]
+    memory: "2024 mein jab hum pehli baar mile the, tab se lekar aaj tak har ek din tumne magical bana diya!",
+    hobbies: ["Painting 🎨", "Late-night chats 🌙", "Listening to songs 🎧", "Journaling ✍️", "Stargazing ⭐"],
+    personalityTraits: ["Dil ki saaf 💖", "Super Cute 😊", "Stubbornly kind 🌸", "Effortlessly funny 😂", "Pure Magic ✨"]
   },
 
   // ── THEME / COLORS ─────────────────────────────────────────────────────
@@ -221,11 +221,11 @@ const CONFIG = {
 
   // ── TIMELINE ───────────────────────────────────────────────────────────
   timeline: [
-    { year: "2019", label: "The day we met", emoji: "🌼" },
-    { year: "2021", label: "That road trip with no plan", emoji: "🚗" },
-    { year: "2023", label: "The year everything changed", emoji: "🌟" },
-    { year: "2025", label: "When we couldn't stop laughing", emoji: "😂" },
-    { year: "2026", label: "Right now — the best one yet", emoji: "🎂" }
+    { year: "2024 (The Beginning)", label: "Pehli baar jab hum 2024 mein mile — 'Tere aane se zindagi gulzar ho gayi, jo baat kabhi na kahi wo baat ho gayi!' 🌸✨", emoji: "🌼" },
+    { year: "Late 2024", label: "Hamari endless late-night baatein aur cute laughter... 'Teri muskaan mein chhupi hai duniya ki saari khushi.' ☕💖", emoji: "☕" },
+    { year: "2025", label: "Jab hum aur kareeb aaye aur har mushkil din tumhari ek hassi se aasan ho gaya! 🌟", emoji: "🌟" },
+    { year: "Early 2026", label: "Are you a magician, Diksha? Because whenever I look at you, everyone else disappears! ✨👑", emoji: "👑" },
+    { year: "2026 Today (25th July)", label: "Happy Birthday Madam Ji! Khuda kare tumhare saare khwab poore hon aur hamesha aise hi muskuraati raho! 🎂🎆", emoji: "🎂" }
   ],
 
   // ── MEMORIES (unlimited — copy an object to add another card) ─────────

@@ -75,13 +75,7 @@
     <div class="wishes__grid" id="wishesGrid"></div>
   </section>
 
-  <!-- FAVORITES -->
-  <section id="favorites" class="page favorites" data-section="favorites">
-    <div class="section-deco" aria-hidden="true"></div>
-    <p class="eyebrow">the official file</p>
-    <h2 class="section-title gradient-text">All Your Favorite Things ✨</h2>
-    <div class="favorites__grid" id="favoritesGrid"></div>
-  </section>
+
 
   <!-- HOBBIES & TRAITS -->
   <section id="hobbies" class="page hobbies" data-section="hobbies">
@@ -157,20 +151,34 @@
     <div class="compliments__strip" id="complimentsStrip"></div>
   </section>
 
-  <!-- VIDEO MESSAGE -->
+  <!-- VIDEO & FAVORITES FLIP CARD -->
   <section id="video" class="page video" data-section="video">
     <div class="section-deco" aria-hidden="true"></div>
-    <p class="eyebrow">one more thing</p>
+    <p class="eyebrow">interactive surprise</p>
     <h2 class="section-title gradient-text" id="videoTitle">One Last Thing... 🎬</h2>
-    <div class="cinema" id="cinema">
-      <div class="cinema__curtain cinema__curtain--l"></div>
-      <div class="cinema__curtain cinema__curtain--r"></div>
-      <div class="cinema__screen" id="cinemaScreen">
-        <button class="cinema__play" id="cinemaPlay" aria-label="Play video">
-          <span class="cinema__play-icon">▶</span>
-        </button>
+    <div class="video-flip-card" id="videoFlipCard">
+      <div class="video-flip-inner">
+        <!-- FRONT: CINEMA VIDEO -->
+        <div class="video-flip-face video-flip-face--front">
+          <div class="cinema" id="cinema">
+            <div class="cinema__curtain cinema__curtain--l"></div>
+            <div class="cinema__curtain cinema__curtain--r"></div>
+            <div class="cinema__screen" id="cinemaScreen">
+              <button class="cinema__play" id="cinemaPlay" aria-label="Play video">
+                <span class="cinema__play-icon">▶</span>
+              </button>
+            </div>
+            <p class="cinema__subtitle" id="cinemaSubtitle"></p>
+          </div>
+          <button id="flipToFavorites" class="video-flip-btn">✨ Flip to see All Your Favorite Things ↻</button>
+        </div>
+        <!-- BACK: FAVORITES GRID -->
+        <div class="video-flip-face video-flip-face--back">
+          <h3 class="favorites-card-heading gradient-text">All Your Favorite Things ✨</h3>
+          <div class="favorites__grid" id="favoritesGrid"></div>
+          <button id="flipToVideo" class="video-flip-btn">🎬 Flip back to Video Message ↻</button>
+        </div>
       </div>
-      <p class="cinema__subtitle" id="cinemaSubtitle"></p>
     </div>
   </section>
 
