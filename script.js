@@ -452,7 +452,8 @@
           <p class="story-final__sub">${f.sub || ""}</p>
           <button id="storyEnter" class="cta-btn">${f.buttonLabel || "Open your page"}</button>
         </div>`;
-      $("#storyEnter").addEventListener("click", enterSite);
+      const enterBtn = $("#storyEnter");
+      if (enterBtn) enterBtn.addEventListener("click", enterSite);
       return;
     }
 
@@ -596,12 +597,14 @@
   ===================================================================== */
   (function renderFavorites() {
     const grid = $("#favoritesGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
     const emojiMap = {
       color: "🎨", flower: "🌸", animal: "🦊", food: "🍜", dessert: "🍰",
       chocolate: "🍫", drink: "🥤", movie: "🎬", anime: "📺", song: "🎵",
       singer: "🎤", quote: "💬", emoji: "😊"
     };
-    Object.entries(c.person.favorites).forEach(([key, value]) => {
+    Object.entries(c.person.favorites || {}).forEach(([key, value]) => {
       if (!value) return;
       const card = document.createElement("div");
       card.className = "fav-card";
