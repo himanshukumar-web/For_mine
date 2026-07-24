@@ -391,7 +391,7 @@
   const storyScreen = $("#storyScreen");
 
   // Populate gift screen from config
-  $("#giftName").textContent = c.person.name || c.person.nickname || "Diksha";
+  $("#giftName").textContent = c.person.nickname || c.person.name;
   $("#giftLabel").textContent = c.story?.giftBoxLabel || "Tap the gift";
   $("#giftHint").textContent = c.story?.giftBoxHint || "";
 
