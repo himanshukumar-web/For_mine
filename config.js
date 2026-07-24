@@ -67,7 +67,7 @@ const CONFIG = {
 
   // ── HERO / COVER ───────────────────────────────────────────────────────
   hero: {
-    heading: "Happy Birthday",
+    heading: "Happy Birthday, Diksha! ✨",
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
     heroImage: { src: "", alt: "Hero photo" },

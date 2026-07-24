@@ -391,7 +391,7 @@
   const storyScreen = $("#storyScreen");
 
   // Populate gift screen from config
-  $("#giftName").textContent = c.person.nickname || c.person.name;
+  $("#giftName").textContent = c.person.name || c.person.nickname || "Diksha";
   $("#giftLabel").textContent = c.story?.giftBoxLabel || "Tap the gift";
   $("#giftHint").textContent = c.story?.giftBoxHint || "";
 
@@ -522,9 +522,11 @@
   /* =====================================================================
      HERO
   ===================================================================== */
-  $("#heroHeading").textContent = c.hero.heading || "Happy Birthday";
+  const nameStr = c.person.name || "Diksha";
+  $("#heroHeading").textContent = c.hero.heading || `Happy Birthday, ${nameStr}! ✨`;
   $("#heroSub").textContent = c.hero.subheading || "";
-  const eyebrowParts = [c.person.nickname || c.person.name];
+  const eyebrowParts = [nameStr];
+  if (c.person.nickname) eyebrowParts.push(`"${c.person.nickname}"`);
   if (c.person.zodiac) eyebrowParts.push(c.person.zodiac);
   $("#heroEyebrow").textContent = eyebrowParts.join(" · ");
   $("#heroAgeBadge").textContent = c.person.age ? `turning ${c.person.age} ✨` : "";
