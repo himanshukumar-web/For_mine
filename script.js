@@ -129,10 +129,10 @@
     const revealTargets = [
       ".wish-card", ".fav-card", ".hobby-tag", ".trait-tag",
       ".timeline__item", ".memory-card", ".photo-slot",
-      ".cassette", ".cinema", ".dream__card", ".reasons__carousel",
+      ".cinema", ".reasons__carousel",
       ".letterbook", ".envelope", ".hero__photo-wrap",
       ".hero__heading", ".hero__sub", ".hero__age-badge",
-      ".countdown", ".section-title", ".eyebrow",
+      ".section-title", ".eyebrow",
       ".hobbies__group", ".compliments__strip",
       ".finale__message", ".cta-btn"
     ];
@@ -771,57 +771,7 @@
 
 
 
-  /* =====================================================================
-     VOICE MESSAGE — cassette player
-  ===================================================================== */
-  (function setupVoice() {
-    $("#voiceTitle").textContent = c.voiceMessage.title || "A Voice Note For You 🎙️";
-    if (c.voiceMessage.cassetteLabel) {
-      $("#cassetteLabel").textContent = c.voiceMessage.cassetteLabel;
-    }
 
-    const wf = $("#waveform");
-    for (let i = 0; i < 42; i++) {
-      const bar = document.createElement("span");
-      bar.style.animationDelay = (i * 0.04).toFixed(2) + "s";
-      wf.appendChild(bar);
-    }
-
-    const audio = $("#voiceAudio");
-    const cassette = $("#cassette");
-    const playBtn = $("#voicePlay");
-    const timeEl = $("#voiceTime");
-    const durationLabel = c.voiceMessage.durationLabel || "0:00";
-
-    if (c.voiceMessage.audioSrc) audio.src = c.voiceMessage.audioSrc;
-    timeEl.textContent = `0:00 / ${durationLabel}`;
-
-    playBtn.addEventListener("click", () => {
-      if (!c.voiceMessage.audioSrc) {
-        showPopup("add an audio file in config.js to hear this 🎙️");
-        return;
-      }
-      if (audio.paused) {
-        audio.play();
-        cassette.classList.add("is-playing");
-        playBtn.textContent = "❚❚";
-      } else {
-        audio.pause();
-        cassette.classList.remove("is-playing");
-        playBtn.textContent = "▶";
-      }
-    });
-
-    audio.addEventListener("timeupdate", () => {
-      const mins = Math.floor(audio.currentTime / 60);
-      const secs = String(Math.floor(audio.currentTime % 60)).padStart(2, "0");
-      timeEl.textContent = `${mins}:${secs} / ${durationLabel}`;
-    });
-    audio.addEventListener("ended", () => {
-      cassette.classList.remove("is-playing");
-      playBtn.textContent = "▶";
-    });
-  })();
 
   /* =====================================================================
      VIDEO MESSAGE — cinema player

@@ -27,10 +27,23 @@
   <div class="deco-float" id="giftDeco" aria-hidden="true"></div>
   <div class="gift-screen__content">
     <p class="gift-screen__eyebrow" id="giftFor">for <span id="giftName">Someone Wonderful</span></p>
-    <button id="giftBox" class="gift-box" aria-label="Open your gift">
-      <span class="gift-box__emoji">🎁</span>
+    <button id="giftBox" class="gift-box-3d-wrap" aria-label="Open your gift">
+      <div class="gift-box-3d">
+        <div class="box-face box-front"><span class="box-ribbon-v"></span></div>
+        <div class="box-face box-back"><span class="box-ribbon-v"></span></div>
+        <div class="box-face box-left"><span class="box-ribbon-v"></span></div>
+        <div class="box-face box-right"><span class="box-ribbon-v"></span></div>
+        <div class="box-face box-bottom"></div>
+        <div class="box-face box-top" id="giftLid">
+          <span class="box-ribbon-h"></span>
+          <span class="box-ribbon-v"></span>
+          <span class="box-bow">🎀</span>
+        </div>
+        <div class="box-interior">
+          <span class="interior-gift-emoji">✨💖</span>
+        </div>
+      </div>
       <span class="gift-box__glow"></span>
-      <span class="gift-box__ring"></span>
     </button>
     <p class="gift-screen__label" id="giftLabel">Tap the gift</p>
     <p class="gift-screen__hint" id="giftHint">there's something inside</p>
@@ -155,28 +168,6 @@
     <div class="reasons__carousel glass-card" id="reasonsCarousel"></div>
     <button class="reasons__next-btn" id="reasonsNext" aria-label="Next reason">tap for next →</button>
     <div class="compliments__strip" id="complimentsStrip"></div>
-  </section>
-
-  <!-- VOICE MESSAGE -->
-  <section id="voice" class="page voice" data-section="voice">
-    <div class="section-deco" aria-hidden="true"></div>
-    <p class="eyebrow">press play</p>
-    <h2 class="section-title gradient-text" id="voiceTitle">A Voice Note For You 🎙️</h2>
-    <div class="cassette" id="cassette">
-      <div class="cassette__body">
-        <div class="cassette__reel cassette__reel--l"><div class="cassette__reel-inner"></div></div>
-        <div class="cassette__window">
-          <div class="cassette__waveform" id="waveform"></div>
-        </div>
-        <div class="cassette__reel cassette__reel--r"><div class="cassette__reel-inner"></div></div>
-      </div>
-      <div class="cassette__label" id="cassetteLabel">side A — recorded with love</div>
-    </div>
-    <div class="cassette__controls">
-      <button id="voicePlay" class="round-btn" aria-label="Play voice message">▶</button>
-      <span id="voiceTime" class="voice-time">0:00 / 0:47</span>
-    </div>
-    <audio id="voiceAudio"></audio>
   </section>
 
   <!-- VIDEO MESSAGE -->
