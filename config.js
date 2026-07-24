@@ -325,7 +325,7 @@ const CONFIG = {
   // ── VIDEO MESSAGE (cinematic player) ─────────────────────────────────────
   videoMessage: {
     title: "One Last Thing... 🎬",
-    videoSrc: "",                    // e.g. "assets/video-message.mp4"
+    videoSrc: "assets/birthday-video.mp4",
     thumbnailSrc: "",
     subtitles: [
       { time: 0, text: "Hey... yeah, this is happening." },
