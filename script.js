@@ -352,6 +352,39 @@
   })();
 
   /* =====================================================================
+     FLOATING HELIUM BALLOONS ENGINE — Immediate floating balloons
+  ===================================================================== */
+  (function setupBalloons() {
+    const colors = ["#FF5E8E", "#FFB703", "#C084FC", "#7DD3FC", "#FF85A2", "#A7F3D0"];
+    function spawnBalloon() {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.backgroundColor = color;
+      balloon.style.color = color;
+      balloon.style.left = (4 + Math.random() * 90) + "vw";
+      balloon.style.animationDuration = (10 + Math.random() * 5).toFixed(1) + "s";
+
+      balloon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        burstConfetti(25);
+        if (window.burstFireworks) window.burstFireworks(e.clientX, e.clientY, 35);
+        spawnFloatie(e.clientX, e.clientY, "🎈");
+        balloon.remove();
+      });
+
+      document.body.appendChild(balloon);
+      balloon.addEventListener("animationend", () => balloon.remove());
+    }
+
+    // Initial batch right at load
+    for (let i = 0; i < 5; i++) {
+      setTimeout(spawnBalloon, i * 600);
+    }
+    setInterval(spawnBalloon, 3000);
+  })();
+
+  /* =====================================================================
      GIFT BOX + STORY MODE
   ===================================================================== */
   const giftScreen = $("#giftScreen");
@@ -518,18 +551,41 @@
     if (cfg.subheading) $("#wishesSub").textContent = cfg.subheading;
 
     const grid = $("#wishesGrid");
-    (c.messages.birthdayWishes || []).forEach((wish) => {
-      const card = document.createElement("div");
-      card.className = "wish-card";
+    if (!grid) return;
+    grid.innerHTML = "";
+    const wishes = c.messages.birthdayWishes || [];
+    wishes.forEach((wish) => {
+      const flipContainer = document.createElement("div");
+      flipContainer.className = "wish-card-flip";
+
       const color = wish.color || c.theme.colors.primary;
-      card.style.setProperty("--wish-color", color);
-      card.innerHTML = `
-        <span class="wish-card__emoji">${wish.emoji || "🎂"}</span>
-        <p class="wish-card__text">${typeof wish === "string" ? wish : wish.text}</p>`;
-      const emojiEl = card.querySelector(".wish-card__emoji");
-      if (emojiEl) emojiEl.style.filter = `drop-shadow(0 4px 12px ${color}40)`;
-      card.style.cssText += `border-top: 3px solid ${color}; `;
-      grid.appendChild(card);
+      flipContainer.style.setProperty("--wish-color", color);
+
+      const frontText = typeof wish === "string" ? wish : wish.front || wish.text;
+      const backText = wish.back || `Diksha, you are truly one of a kind! ✨💖`;
+      const frontEmoji = wish.emoji || "🎂";
+      const backEmoji = wish.backEmoji || "💌";
+
+      flipContainer.innerHTML = `
+        <div class="wish-card-inner">
+          <div class="wish-card-face wish-card-face--front">
+            <span class="wish-card__emoji">${frontEmoji}</span>
+            <p class="wish-card__text">${frontText}</p>
+            <span class="wish-card__hint">↻ tap to flip note</span>
+          </div>
+          <div class="wish-card-face wish-card-face--back">
+            <span class="wish-card__emoji">${backEmoji}</span>
+            <p class="wish-card__text">${backText}</p>
+          </div>
+        </div>`;
+
+      flipContainer.addEventListener("click", (e) => {
+        flipContainer.classList.toggle("is-flipped");
+        burstConfetti(20);
+        if (window.burstFireworks) window.burstFireworks(e.clientX, e.clientY, 30);
+      });
+
+      grid.appendChild(flipContainer);
     });
   })();
 

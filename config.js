@@ -21,10 +21,10 @@ const CONFIG = {
 
   // ── PERSONAL DETAILS ──────────────────────────────────────────────────
   person: {
-    name: "Your Person's Name",
+    name: "Diksha",
     nickname: "Sunshine",
-    birthdayDate: "2026-08-15",       // YYYY-MM-DD
-    age: 21,
+    birthdayDate: "2006-07-25",       // YYYY-MM-DD
+    age: 20,
     zodiac: "Leo ♌",                  // set to "" to hide
     favorites: {
       color: "Lavender Pink",
@@ -50,18 +50,18 @@ const CONFIG = {
   theme: {
     defaultMode: "dark",               // "light" or "dark"
     colors: {
-      primary:    "#FF6B9D",           // rose — buttons, headings, accents
-      secondary:  "#FFB347",           // warm gold — secondary highlights
-      accent:     "#C084FC",           // lilac/purple — glows, highlights
-      tertiary:   "#67E8F9",           // cyan — extra pop
+      primary: "#FF6B9D",           // rose — buttons, headings, accents
+      secondary: "#FFB347",           // warm gold — secondary highlights
+      accent: "#C084FC",           // lilac/purple — glows, highlights
+      tertiary: "#67E8F9",           // cyan — extra pop
       bgStartLight: "#FFF5F7",
-      bgEndLight:   "#FDE8EF",
-      bgStartDark:  "#0F0A1A",
-      bgEndDark:    "#1A0E2E",
+      bgEndLight: "#FDE8EF",
+      bgStartDark: "#0F0A1A",
+      bgEndDark: "#1A0E2E",
       textLight: "#3D2B3D",
-      textDark:  "#F5E6F0",
+      textDark: "#F5E6F0",
       cardLight: "rgba(255, 255, 255, 0.7)",
-      cardDark:  "rgba(255, 255, 255, 0.06)"
+      cardDark: "rgba(255, 255, 255, 0.06)"
     }
   },
 
@@ -70,8 +70,8 @@ const CONFIG = {
     heading: "Happy Birthday",
     subheading: "One more year of being the best part of everyone's story. ✨",
     coverImage: { src: "", alt: "Cover photo" },
-    heroImage:  { src: "", alt: "Hero photo" },
-    heroGif:    { src: "https://i.giphy.com/MDJ9Ibxa5ev5p9qxyV.gif", alt: "Mochi Cat Candy Sticker" }
+    heroImage: { src: "", alt: "Hero photo" },
+    heroGif: { src: "https://i.giphy.com/MDJ9Ibxa5ev5p9qxyV.gif", alt: "Mochi Cat Candy Sticker" }
   },
 
   // ── STORY MODE ─────────────────────────────────────────────────────────
@@ -123,11 +123,41 @@ const CONFIG = {
   // ── TEXT CONTENT ───────────────────────────────────────────────────────
   messages: {
     birthdayWishes: [
-      { text: "May this year hand you every soft, golden thing you've been hoping for.", emoji: "🌸", color: "#FF6B9D" },
-      { text: "Here's to more laughter, more adventures, and more you.", emoji: "🎉", color: "#FFB347" },
-      { text: "The world got a little brighter the day you were born.", emoji: "✨", color: "#C084FC" },
-      { text: "I hope your year is filled with moments that take your breath away.", emoji: "💫", color: "#67E8F9" },
-      { text: "You deserve every beautiful thing this world has to offer.", emoji: "🌹", color: "#FF6B9D" }
+      {
+        front: "May this year hand you every soft, golden thing you've been hoping for, Diksha.",
+        back: "Diksha, you bring so much warmth into the world. Never forget how truly precious you are! ✨💖 (Tap again to flip back)",
+        emoji: "🌸",
+        backEmoji: "💌",
+        color: "#FF5E8E"
+      },
+      {
+        front: "Here's to more laughter, late-night talks, and endless coffee runs with you, Diksha!",
+        back: "Every moment with you Diksha is a treasure. So lucky to celebrate you today! 🥳🎉 (Tap again to flip back)",
+        emoji: "🎉",
+        backEmoji: "🎁",
+        color: "#FFB703"
+      },
+      {
+        front: "The world got a whole lot brighter and happier the day you were born, Diksha.",
+        back: "Diksha, your smile can literally cure a bad day. Keep shining your beautiful light! 🌟💕 (Tap again to flip back)",
+        emoji: "✨",
+        backEmoji: "⭐",
+        color: "#C084FC"
+      },
+      {
+        front: "I hope your year is filled with moments that make your heart dance, Diksha.",
+        back: "To the most genuine & amazing soul — may all your secret wishes come true, Diksha! 💫🎂 (Tap again to flip back)",
+        emoji: "💫",
+        backEmoji: "🎀",
+        color: "#7DD3FC"
+      },
+      {
+        front: "You deserve every beautiful thing, every smile, and all the love in the world, Diksha.",
+        back: "Diksha, thank you for being you — soft, funny, kind, and absolutely unforgettable! 🌹💖 (Tap again to flip back)",
+        emoji: "🌹",
+        backEmoji: "🧸",
+        color: "#FF85A2"
+      }
     ],
     reasonsYoureSpecial: [
       "You remember the small things — how people take their coffee, what made them nervous last week.",
@@ -355,19 +385,19 @@ const CONFIG = {
 
   // ── SECTION EMOJIS (decorative floating emojis per section) ────────────
   sectionEmojis: {
-    hero:       ["✨", "🎂", "🎉", "💖", "⭐"],
-    wishes:     ["🎂", "🎉", "🎁", "🎈", "🥳"],
-    favorites:  ["🎨", "🌸", "🎵", "🍰", "🦊"],
-    hobbies:    ["🎨", "📚", "🌙", "✏️", "🎸"],
-    timeline:   ["🌼", "🚗", "🌟", "📸", "💫"],
-    memories:   ["💭", "📷", "🌈", "☁️", "🧸"],
-    gallery:    ["📸", "🖼️", "✨", "💕", "🎞️"],
-    letter:     ["💌", "💝", "🌹", "📝", "💗"],
-    reasons:    ["💖", "⭐", "🌟", "💫", "✨"],
-    dream:      ["🌸", "✈️", "🗺️", "🌏", "🌅"],
-    voice:      ["🎙️", "🎵", "🎶", "💿", "📻"],
-    video:      ["🎬", "📽️", "🎥", "🍿", "🌟"],
-    finale:     ["🎆", "💖", "🌙", "⭐", "🎊"]
+    hero: ["✨", "🎂", "🎉", "💖", "⭐"],
+    wishes: ["🎂", "🎉", "🎁", "🎈", "🥳"],
+    favorites: ["🎨", "🌸", "🎵", "🍰", "🦊"],
+    hobbies: ["🎨", "📚", "🌙", "✏️", "🎸"],
+    timeline: ["🌼", "🚗", "🌟", "📸", "💫"],
+    memories: ["💭", "📷", "🌈", "☁️", "🧸"],
+    gallery: ["📸", "🖼️", "✨", "💕", "🎞️"],
+    letter: ["💌", "💝", "🌹", "📝", "💗"],
+    reasons: ["💖", "⭐", "🌟", "💫", "✨"],
+    dream: ["🌸", "✈️", "🗺️", "🌏", "🌅"],
+    voice: ["🎙️", "🎵", "🎶", "💿", "📻"],
+    video: ["🎬", "📽️", "🎥", "🍿", "🌟"],
+    finale: ["🎆", "💖", "🌙", "⭐", "🎊"]
   }
 };
 
