@@ -413,16 +413,23 @@
 
   // Background music starter
   function startBackgroundMusic() {
-    const track = (c.music.playlist || []).find((t) => t.src);
-    const audio = $("#musicAudio");
-    if (track) {
-      audio.src = track.src;
-      audio.loop = c.music.loop;
-      audio.volume = c.music.defaultVolume ?? 0.5;
-      audio.play().catch(() => {});
-      $("#musicPlayer").classList.add("is-playing");
-      $("#musicPlayPause").textContent = "❚❚";
-      $("#musicNow").textContent = `${track.title} — ${track.artist || ""}`;
+    try {
+      const track = (c.music?.playlist || []).find((t) => t && t.src);
+      const audio = $("#musicAudio");
+      if (track && audio) {
+        audio.src = track.src;
+        audio.loop = !!c.music?.loop;
+        audio.volume = c.music?.defaultVolume ?? 0.5;
+        audio.play().catch(() => {});
+        const player = $("#musicPlayer");
+        if (player) player.classList.add("is-playing");
+        const playPauseBtn = $("#musicPlayPause");
+        if (playPauseBtn) playPauseBtn.textContent = "❚❚";
+        const nowEl = $("#musicNow");
+        if (nowEl) nowEl.textContent = `${track.title} — ${track.artist || ""}`;
+      }
+    } catch (err) {
+      console.warn("Background music error:", err);
     }
   }
 
@@ -431,15 +438,19 @@
   function renderStorySlide() {
     const slides = c.story?.slides || [];
     const progress = $("#storyProgress");
-    progress.innerHTML = "";
-    const totalSegs = slides.length + 1; // +1 for final
-    for (let i = 0; i < totalSegs; i++) {
-      const seg = document.createElement("span");
-      seg.className = "story-progress__seg" + (i < storyIndex ? " is-done" : i === storyIndex ? " is-active" : "");
-      progress.appendChild(seg);
+    if (progress) {
+      progress.innerHTML = "";
+      const totalSegs = slides.length + 1; // +1 for final
+      for (let i = 0; i < totalSegs; i++) {
+        const seg = document.createElement("span");
+        seg.className = "story-progress__seg" + (i < storyIndex ? " is-done" : i === storyIndex ? " is-active" : "");
+        progress.appendChild(seg);
+      }
     }
 
     const slideEl = $("#storySlide");
+    if (!slideEl) return;
+
     if (storyIndex >= slides.length) {
       // Final slide
       const f = c.story?.finalSlide || {};
@@ -471,21 +482,41 @@
     renderStorySlide();
   }
 
-  // Gift box click
-  $("#giftBox").addEventListener("click", (e) => {
-    startBackgroundMusic();
-    burstConfetti(40);
-    if (window.burstFireworks) {
-      window.burstFireworks(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, 50);
+  // Gift box click & touch
+  const giftBoxBtn = $("#giftBox");
+  if (giftBoxBtn) {
+    let hasOpened = false;
+    function handleGiftOpen(e) {
+      if (hasOpened) return;
+      hasOpened = true;
+      if (e && e.cancelable) e.preventDefault();
+      try { startBackgroundMusic(); } catch (err) {}
+      try { burstConfetti(50); } catch (err) {}
+      try {
+        if (window.burstFireworks) {
+          const x = (e && e.clientX) || window.innerWidth / 2;
+          const y = (e && e.clientY) || window.innerHeight / 2;
+          window.burstFireworks(x, y, 60);
+        }
+      } catch (err) {}
+
+      giftBoxBtn.classList.add("is-open");
+      if (giftScreen) giftScreen.classList.add("is-open");
+
+      setTimeout(() => {
+        if (giftScreen) giftScreen.style.display = "none";
+        if (storyScreen) {
+          storyScreen.hidden = false;
+          storyScreen.style.display = "flex";
+        }
+        renderStorySlide();
+        hasOpened = false;
+      }, 500);
     }
-    giftScreen.classList.add("is-open");
-    setTimeout(() => {
-      giftScreen.style.display = "none";
-      storyScreen.hidden = false;
-      storyScreen.style.display = "flex";
-      renderStorySlide();
-    }, 600);
-  });
+
+    giftBoxBtn.addEventListener("click", handleGiftOpen);
+    giftBoxBtn.addEventListener("touchend", handleGiftOpen);
+  }
 
   // Story navigation
   $("#storyTapRight").addEventListener("click", () => goStory(1));
